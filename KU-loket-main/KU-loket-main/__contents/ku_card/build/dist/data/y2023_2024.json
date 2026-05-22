@@ -1,0 +1,14 @@
+[
+    { "subject": "YT0661 - Computer Systems",                    "result": "15/20", "date": "31.01.2024", "sp": "3",  "attempt": "1", "retrieved": "1" },
+    { "subject": "YT0662 - C Programming Fundamentals",          "result": "16/20", "date": "31.01.2024", "sp": "6",  "attempt": "1", "retrieved": "1" },
+    { "subject": "YT0675 - Scripting",                           "result": "14/20", "date": "31.01.2024", "sp": "3",  "attempt": "1", "retrieved": "1" },
+    { "subject": "YT0737 - OS Fundamentals",                     "result": "14/20", "date": "31.01.2024", "sp": "6",  "attempt": "1", "retrieved": "1" },
+    { "subject": "YT0749 - Database Fundamentals",               "result": "15/20", "date": "31.01.2024", "sp": "6",  "attempt": "1", "retrieved": "1" },
+    { "subject": "YT0868 - Information Security - Fundamentals", "result": "15/20", "date": "31.01.2024", "sp": "6",  "attempt": "1", "retrieved": "1" },
+    { "subject": "YT0292 - Web Engineering",                     "result": "14/20", "date": "26.06.2024", "sp": "6",  "attempt": "1", "retrieved": "1" },
+    { "subject": "YT0664 - Network Fundamentals",                "result": "15/20", "date": "26.06.2024", "sp": "3",  "attempt": "1", "retrieved": "1" },
+    { "subject": "YT0672 - OS Advanced",                         "result": "15/20", "date": "26.06.2024", "sp": "6",  "attempt": "1", "retrieved": "1" },
+    { "subject": "YT0774 - Practice Enterprise ICT 3",           "result": "15/20", "date": "26.06.2024", "sp": "12", "attempt": "1", "retrieved": "1" },
+    { "subject": "YT0743 - Computer System Architecture",        "result": "16/20", "date": "26.06.2024", "sp": "3",  "attempt": "1", "retrieved": "1" },
+    { "subject": "YT0788 - Smart technology",                    "result": "14/20", "date": "26.06.2024", "sp": "6",  "attempt": "1", "retrieved": "1" }
+]

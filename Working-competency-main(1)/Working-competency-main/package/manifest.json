@@ -1,0 +1,1682 @@
+{
+	"sap.package": {
+		"id": "Competency_cards",
+		"packageVersion": {
+			"version": "1.4.34",
+			"upgradeNotification": "all"
+		},
+		"i18n": "i18n/i18n.properties",
+		"icon": "sap-icon://accept",
+		"title": "comp2",
+		"subTitle": "",
+		"shortTitle": "",
+		"info": "",
+		"description": "",
+		"tags": {
+			"keywords": []
+		},
+		"vendor": {
+			"id": "",
+			"name": "",
+			"url": ""
+		},
+		"products": "",
+		"categories": "",
+		"scope": "external",
+		"license": {
+			"text": "",
+			"url": ""
+		},
+		"homepage": {
+			"text": "",
+			"url": ""
+		},
+		"support": {
+			"url": ""
+		},
+		"contents": [
+			{
+				"manifest": {
+					"_version": "1.27.0",
+					"_generator": "cpkg-project-template",
+					"sap.artifact": {
+						"id": "competencycards.assessments",
+						"type": "card",
+						"title": "{{CARD_TITLE}}",
+						"subTitle": "{{CARD_SUBTITLE}}",
+						"i18n": "i18n/i18n.properties",
+						"artifactVersion": {
+							"version": "1.0.3"
+						}
+					}
+				},
+				"baseURL": "artifacts/assessments-card"
+			},
+			{
+				"manifest": {
+					"_version": "1.27.0",
+					"_generator": "cpkg-project-template",
+					"sap.artifact": {
+						"id": "competencycards.assessmentComponentV2",
+						"type": "card",
+						"title": "{{CARD_TITLE}}",
+						"subTitle": "{{CARD_SUBTITLE}}",
+						"description": "{{CARD_SUBTITLE}}",
+						"i18n": "i18n/i18n.properties",
+						"artifactVersion": {
+							"version": "1.0.10"
+						}
+					}
+				},
+				"baseURL": "artifacts/assessment-component-card"
+			},
+			{
+				"manifest": {
+					"_version": "1.27.0",
+					"_generator": "cpkg-project-template",
+					"sap.artifact": {
+						"id": "competencycards.roleFilter",
+						"type": "card",
+						"title": "{{CARD_TITLE}}",
+						"subTitle": "{{CARD_SUBTITLE}}",
+						"description": "{{CARD_SUBTITLE}}",
+						"i18n": "i18n/i18n.properties",
+						"artifactVersion": {
+							"version": "1.0.1"
+						}
+					}
+				},
+				"baseURL": "artifacts/role-filter-card"
+			},
+			{
+				"manifest": {
+					"_version": "1.27.0",
+					"_generator": "cpkg-project-template",
+					"sap.artifact": {
+						"id": "competencycards.groupComponent",
+						"type": "card",
+						"title": "{{CARD_TITLE}}",
+						"subTitle": "{{CARD_SUBTITLE}}",
+						"description": "{{CARD_SUBTITLE}}",
+						"i18n": "i18n/i18n.properties",
+						"artifactVersion": {
+							"version": "1.0.32"
+						}
+					}
+				},
+				"baseURL": "artifacts/group-component-card"
+			},
+			{
+				"manifest": {
+					"_version": "1.27.0",
+					"_generator": "cpkg-project-template",
+					"sap.artifact": {
+						"id": "competencycards.competencyComponent",
+						"type": "card",
+						"title": "{{CARD_TITLE}}",
+						"subTitle": "{{CARD_SUBTITLE}}",
+						"description": "{{CARD_SUBTITLE}}",
+						"i18n": "i18n/i18n.properties",
+						"artifactVersion": {
+							"version": "1.0.9"
+						}
+					}
+				},
+				"baseURL": "artifacts/competency-component-card"
+			},
+			{
+				"manifest": {
+					"_version": "1.27.0",
+					"_generator": "cpkg-project-template",
+					"sap.artifact": {
+						"id": "competencycards.certification",
+						"type": "card",
+						"title": "{{CARD_TITLE}}",
+						"subTitle": "{{CARD_SUBTITLE}}",
+						"i18n": "i18n/i18n.properties",
+						"artifactVersion": {
+							"version": "1.0.3"
+						}
+					}
+				},
+				"baseURL": "artifacts/certification-assessments-card"
+			},
+			{
+				"manifest": {
+					"_version": "1.27.0",
+					"_generator": "cpkg-project-template",
+					"sap.artifact": {
+						"id": "competencycards.certificationStatus",
+						"type": "card",
+						"title": "{{CARD_TITLE}}",
+						"subTitle": "{{CARD_SUBTITLE}}",
+						"description": "{{CARD_SUBTITLE}}",
+						"i18n": "i18n/i18n.properties",
+						"artifactVersion": {
+							"version": "1.0.1"
+						}
+					}
+				},
+				"baseURL": "artifacts/certification-status-card"
+			},
+			{
+				"manifest": {
+					"_version": "1.27.0",
+					"_generator": "cpkg-project-template",
+					"sap.artifact": {
+						"id": "competencycards.aggregated",
+						"type": "card",
+						"title": "{{CARD_TITLE}}",
+						"subTitle": "{{CARD_SUBTITLE}}",
+						"description": "{{CARD_SUBTITLE}}",
+						"i18n": "i18n/i18n.properties",
+						"artifactVersion": {
+							"version": "1.2.5"
+						}
+					}
+				},
+				"baseURL": "artifacts/aggregated-score-card"
+			},
+			{
+				"manifest": {
+					"_version": "1.27.0",
+					"_generator": "cpkg-project-template",
+					"sap.artifact": {
+						"id": "competencycards.certifications",
+						"type": "card",
+						"title": "{{CARD_TITLE}}",
+						"subTitle": "{{CARD_SUBTITLE}}",
+						"i18n": "i18n/i18n.properties",
+						"artifactVersion": {
+							"version": "1.0.1"
+						}
+					}
+				},
+				"baseURL": "artifacts/certifications-list-card"
+			},
+			{
+				"manifest": {
+					"_version": "1.27.0",
+					"_generator": "cpkg-project-template",
+					"sap.artifact": {
+						"id": "competencycards.competencies",
+						"type": "card",
+						"title": "{{CARD_TITLE}}",
+						"subTitle": "{{CARD_SUBTITLE}}",
+						"i18n": "i18n/i18n.properties",
+						"artifactVersion": {
+							"version": "1.0.0"
+						}
+					}
+				},
+				"baseURL": "artifacts/competencies-list-card"
+			},
+			{
+				"manifest": {
+					"_version": "1.27.0",
+					"_generator": "cpkg-project-template",
+					"sap.artifact": {
+						"id": "competencycards.overdueCertificatesV2",
+						"type": "card",
+						"title": "{{CARD_TITLE}}",
+						"subTitle": "{{CARD_SUBTITLE}}",
+						"i18n": "i18n/i18n.properties",
+						"artifactVersion": {
+							"version": "1.0.6"
+						}
+					}
+				},
+				"baseURL": "artifacts/overdue-certificates-v2-card"
+			},
+			{
+				"manifest": {
+					"_version": "1.27.0",
+					"_generator": "cpkg-project-template",
+					"sap.artifact": {
+						"id": "competencycards.overdueCertificatesV3",
+						"type": "card",
+						"title": "{{CARD_TITLE}}",
+						"subTitle": "{{CARD_SUBTITLE}}",
+						"i18n": "i18n/i18n.properties",
+						"artifactVersion": {
+							"version": "1.0.1"
+						}
+					}
+				},
+				"baseURL": "artifacts/overdue-certificates-v3-card"
+			},
+			{
+				"manifest": {
+					"_version": "1.27.0",
+					"_generator": "cpkg-project-template",
+					"sap.artifact": {
+						"id": "competencycards.profile",
+						"type": "card",
+						"title": "{{CARD_TITLE}}",
+						"subTitle": "{{CARD_SUBTITLE}}",
+						"i18n": "i18n/i18n.properties",
+						"artifactVersion": {
+							"version": "1.1.6"
+						}
+					}
+				},
+				"baseURL": "artifacts/profile-summary-card"
+			},
+			{
+				"manifest": {
+					"_version": "1.27.0",
+					"_generator": "cpkg-project-template",
+					"sap.artifact": {
+						"id": "competencycards.all",
+						"type": "card",
+						"title": "{{CARD_TITLE}}",
+						"subTitle": "{{CARD_SUBTITLE}}",
+						"i18n": "i18n/i18n.properties",
+						"artifactVersion": {
+							"version": "1.0.0"
+						}
+					}
+				},
+				"baseURL": "artifacts/all-assessments-card"
+			},
+			{
+				"manifest": {
+					"_version": "1.27.0",
+					"_generator": "cpkg-project-template",
+					"sap.artifact": {
+						"id": "competencycards.autoUpdatedOverview",
+						"type": "card",
+						"title": "{{CARD_TITLE}}",
+						"subTitle": "{{CARD_SUBTITLE}}",
+						"i18n": "i18n/i18n.properties",
+						"artifactVersion": {
+							"version": "1.0.14"
+						}
+					}
+				},
+				"baseURL": "artifacts/auto-updated-overview-card"
+			}
+		],
+		"documentation": {
+			"url": ""
+		},
+		"consumption": [],
+		"dependencies": {
+			"products": [],
+			"services": []
+		},
+		"destinations": [],
+		"cdmEntities": [
+			{
+				"_version": "3.2.0",
+				"identification": {
+					"id": "competencycards.role",
+					"title": "Competency Role",
+					"entityType": "role"
+				},
+				"payload": {
+					"apps": [
+						{
+							"id": "competencycards.employeeProfile.app"
+						},
+						{
+							"id": "competencycards.assessments.app"
+						},
+						{
+							"id": "competencycards.assessmentComponentV2.app"
+						},
+						{
+							"id": "competencycards.roleFilter.app"
+						},
+						{
+							"id": "competencycards.competencyComponent.app"
+						},
+						{
+							"id": "competencycards.competency.app"
+						},
+						{
+							"id": "competencycards.certification.app"
+						},
+						{
+							"id": "competencycards.aggregated.app"
+						},
+						{
+							"id": "competencycards.certifications.app"
+						},
+						{
+							"id": "competencycards.competencies.app"
+						},
+						{
+							"id": "competencycards.profile.app"
+						},
+						{
+							"id": "competencycards.expiring.app"
+						},
+						{
+							"id": "competencycards.overdueCertificatesV2.app"
+						},
+						{
+							"id": "competencycards.overdueCertificatesV3.app"
+						},
+						{
+							"id": "competencycards.all.app"
+						},
+						{
+							"id": "competencycards.autoUpdatedOverview.app"
+						},
+						{
+							"id": "competencycards.groupComponent.app"
+						},
+						{
+							"id": "competencycards.overdueCertificatesV3.app"
+						}
+					]
+				},
+				"texts": [
+					{
+						"locale": "",
+						"textDictionary": {
+							"description": "Business App Description"
+						}
+					}
+				]
+			},
+			{
+				"_version": "3.2.0",
+				"identification": {
+					"id": "competencycards.assessments.app",
+					"title": "{{CARD_TITLE}}",
+					"entityType": "businessapp",
+					"description": "{{description}}"
+				},
+				"payload": {
+					"visualizations": {
+						"competencycards.assessments.viz": {
+							"vizType": "sap.card",
+							"vizConfig": {
+								"sap.app": {
+									"id": "competencycards.assessments",
+									"type": "card",
+									"title": "{{CARD_TITLE}}",
+									"subTitle": "{{CARD_SUBTITLE}}",
+									"applicationVersion": {
+										"version": "1.0.3"
+									},
+									"i18n": "i18n/i18n.properties"
+								},
+								"sap.ui": {
+									"technology": "UI5"
+								},
+								"sap.card": {
+									"type": "Analytical",
+									"extension": "./CardExtension",
+									"configuration": {
+										"destinations": {
+											"comp_mat_card": {
+												"name": "comp_mat_card",
+												"defaultUrl": "https://flexso-extensions-dev-cmtrx-v3-cmtrx-srv.cfapps.eu10.hana.ondemand.com"
+											}
+										}
+									},
+									"data": {
+										"extension": {
+											"method": "getData"
+										}
+									},
+									"header": {
+										"title": "{{CARD_TITLE}}",
+										"subtitle": "{defaultFullName}"
+									},
+									"content": {
+										"chartType": "Donut",
+										"popover": {
+											"active": true
+										},
+										"legend": {
+											"visible": true,
+											"position": "Right",
+											"alignment": "Center"
+										},
+										"plotArea": {
+											"dataLabel": {
+												"visible": true,
+												"hideWhenOverlap": true
+											}
+										},
+										"chartProperties": {
+											"plotArea": {
+												"colorPalette": [
+													"#107E3E",
+													"#E9730C",
+													"#BB0000"
+												]
+											},
+											"interaction": {
+												"selectability": {
+													"mode": "SINGLE"
+												}
+											}
+										},
+										"title": {
+											"text": "{{CHART_TITLE}}",
+											"visible": true,
+											"alignment": "Left"
+										},
+										"data": {
+											"path": "/gapSummary"
+										},
+										"dimensions": [
+											{
+												"name": "Gap Status",
+												"value": "{label}"
+											}
+										],
+										"measures": [
+											{
+												"name": "Count",
+												"value": "{count}"
+											}
+										],
+										"feeds": [
+											{
+												"uid": "color",
+												"type": "Dimension",
+												"values": [
+													"Gap Status"
+												]
+											},
+											{
+												"uid": "size",
+												"type": "Measure",
+												"values": [
+													"Count"
+												]
+											}
+										]
+									}
+								}
+							},
+							"vizResources": {
+								"artifactId": "competencycards.assessments"
+							}
+						}
+					}
+				},
+				"texts": [
+					{
+						"locale": "",
+						"textDictionary": {
+							"CARD_TITLE": "Assessments",
+							"CARD_SUBTITLE": "Assessment Overview",
+							"CHART_TITLE": "Gap Overview"
+						}
+					}
+				]
+			},
+			{
+				"_version": "3.2.0",
+				"identification": {
+					"id": "competencycards.assessmentComponentV2.app",
+					"title": "{{CARD_TITLE}}",
+					"entityType": "businessapp",
+					"description": "{{description}}"
+				},
+				"payload": {
+					"visualizations": {
+						"competencycards.assessmentComponentV2.viz": {
+							"vizType": "sap.card",
+							"vizConfig": {
+								"sap.app": {
+									"id": "competencycards.assessmentComponentV2",
+									"type": "card",
+									"title": "{{CARD_TITLE}}",
+									"subTitle": "{{CARD_SUBTITLE}}",
+									"description": "{{CARD_SUBTITLE}}",
+									"applicationVersion": {
+										"version": "1.0.10"
+									},
+									"i18n": "i18n/i18n.properties"
+								},
+								"sap.ui": {
+									"technology": "UI5"
+								},
+								"sap.card": {
+									"type": "Component",
+									"configuration": {
+										"destinations": {
+											"comp_mat_card": {
+												"name": "comp_mat_card",
+												"defaultUrl": "https://flexso-consumer-dev.launchpad.cfapps.eu10.hana.ondemand.com/dynamic_dest/comp_mat_card"
+											}
+										}
+									},
+									"popover": {
+										"active": true
+									},
+									"header": {
+										"title": "{{CARD_TITLE}}",
+										"subTitle": "{{CARD_SUBTITLE}}"
+									}
+								},
+								"sap.ui5": {
+									"dependencies": {
+										"minUI5Version": "1.96.0",
+										"libs": {
+											"sap.m": {},
+											"sap.ui.core": {}
+										}
+									},
+									"rootView": {
+										"viewName": "competencycards.assessmentComponentV2.view.Main",
+										"type": "XML",
+										"async": true,
+										"id": "main"
+									}
+								}
+							},
+							"vizResources": {
+								"artifactId": "competencycards.assessmentComponentV2"
+							}
+						}
+					}
+				},
+				"texts": [
+					{
+						"locale": "",
+						"textDictionary": {
+							"CARD_TITLE": "Certification Gap Overview",
+							"CARD_SUBTITLE": "Role-Based Certification Gaps"
+						}
+					}
+				]
+			},
+			{
+				"_version": "3.2.0",
+				"identification": {
+					"id": "competencycards.roleFilter.app",
+					"title": "{{CARD_TITLE}}",
+					"entityType": "businessapp",
+					"description": "{{description}}"
+				},
+				"payload": {
+					"visualizations": {
+						"competencycards.roleFilter.viz": {
+							"vizType": "sap.card",
+							"vizConfig": {
+								"sap.app": {
+									"id": "competencycards.roleFilter",
+									"type": "card",
+									"title": "{{CARD_TITLE}}",
+									"subTitle": "{{CARD_SUBTITLE}}",
+									"description": "{{CARD_SUBTITLE}}",
+									"applicationVersion": {
+										"version": "1.0.1"
+									},
+									"i18n": "i18n/i18n.properties"
+								},
+								"sap.ui": {
+									"technology": "UI5"
+								},
+								"sap.card": {
+									"type": "Component",
+									"configuration": {
+										"destinations": {
+											"comp_mat_card": {
+												"name": "comp_mat_card",
+												"defaultUrl": "https://flexso-consumer-dev.launchpad.cfapps.eu10.hana.ondemand.com/dynamic_dest/comp_mat_card"
+											}
+										}
+									},
+									"header": {
+										"title": "{{CARD_TITLE}}",
+										"subTitle": "{{CARD_SUBTITLE}}"
+									}
+								},
+								"sap.ui5": {
+									"dependencies": {
+										"minUI5Version": "1.96.0",
+										"libs": {
+											"sap.m": {},
+											"sap.ui.core": {}
+										}
+									},
+									"rootView": {
+										"viewName": "competencycards.roleFilter.view.Main",
+										"type": "XML",
+										"async": true,
+										"id": "main"
+									}
+								}
+							},
+							"vizResources": {
+								"artifactId": "competencycards.roleFilter"
+							}
+						}
+					}
+				},
+				"texts": [
+					{
+						"locale": "",
+						"textDictionary": {
+							"CARD_TITLE": "Central Role Filter",
+							"CARD_SUBTITLE": "Shared Role Selection"
+						}
+					}
+				]
+			},
+			{
+				"_version": "3.2.0",
+				"identification": {
+					"id": "competencycards.groupComponent.app",
+					"title": "{{CARD_TITLE}}",
+					"entityType": "businessapp",
+					"description": "{{description}}"
+				},
+				"payload": {
+					"visualizations": {
+						"competencycards.groupComponent.viz": {
+							"vizType": "sap.card",
+							"vizConfig": {
+								"sap.app": {
+									"id": "competencycards.groupComponent",
+									"type": "card",
+									"title": "{{CARD_TITLE}}",
+									"subTitle": "{{CARD_SUBTITLE}}",
+									"description": "{{CARD_SUBTITLE}}",
+									"applicationVersion": {
+										"version": "1.0.32"
+									},
+									"i18n": "i18n/i18n.properties"
+								},
+								"sap.ui": {
+									"technology": "UI5"
+								},
+								"sap.card": {
+									"type": "Component",
+									"configuration": {
+										"destinations": {
+											"comp_mat_card": {
+												"name": "comp_mat_card",
+												"defaultUrl": "https://flexso-consumer-dev.launchpad.cfapps.eu10.hana.ondemand.com/dynamic_dest/comp_mat_card"
+											}
+										}
+									},
+									"header": {
+										"title": "{{CARD_TITLE}}",
+										"subTitle": "{{CARD_SUBTITLE}}"
+									}
+								},
+								"sap.ui5": {
+									"dependencies": {
+										"minUI5Version": "1.96.0",
+										"libs": {
+											"sap.m": {},
+											"sap.ui.core": {}
+										}
+									},
+									"rootView": {
+										"viewName": "competencycards.groupComponent.view.Main",
+										"type": "XML",
+										"async": true,
+										"id": "main"
+									}
+								}
+							},
+							"vizResources": {
+								"artifactId": "competencycards.groupComponent"
+							}
+						}
+					}
+				},
+				"texts": [
+					{
+						"locale": "",
+						"textDictionary": {
+							"CARD_TITLE": "Group Details",
+							"CARD_SUBTITLE": "Select a group and inspect its details"
+						}
+					}
+				]
+			},
+			{
+				"_version": "3.2.0",
+				"identification": {
+					"id": "competencycards.competencyComponent.app",
+					"title": "{{CARD_TITLE}}",
+					"entityType": "businessapp",
+					"description": "{{description}}"
+				},
+				"payload": {
+					"visualizations": {
+						"competencycards.competencyComponent.viz": {
+							"vizType": "sap.card",
+							"vizConfig": {
+								"sap.app": {
+									"id": "competencycards.competencyComponent",
+									"type": "card",
+									"title": "{{CARD_TITLE}}",
+									"subTitle": "{{CARD_SUBTITLE}}",
+									"description": "{{CARD_SUBTITLE}}",
+									"applicationVersion": {
+										"version": "1.0.9"
+									},
+									"i18n": "i18n/i18n.properties"
+								},
+								"sap.ui": {
+									"technology": "UI5"
+								},
+								"sap.card": {
+									"type": "Component",
+									"configuration": {
+										"destinations": {
+											"comp_mat_card": {
+												"name": "comp_mat_card",
+												"defaultUrl": "https://flexso-consumer-dev.launchpad.cfapps.eu10.hana.ondemand.com/dynamic_dest/comp_mat_card"
+											}
+										}
+									},
+									"header": {
+										"title": "{{CARD_TITLE}}",
+										"subTitle": "{{CARD_SUBTITLE}}"
+									}
+								},
+								"popover": {
+									"active": true
+								},
+								"sap.ui5": {
+									"dependencies": {
+										"minUI5Version": "1.96.0",
+										"libs": {
+											"sap.m": {},
+											"sap.ui.core": {}
+										}
+									},
+									"rootView": {
+										"viewName": "competencycards.competencyComponent.view.Main",
+										"type": "XML",
+										"async": true,
+										"id": "main"
+									}
+								}
+							},
+							"vizResources": {
+								"artifactId": "competencycards.competencyComponent"
+							}
+						}
+					}
+				},
+				"texts": [
+					{
+						"locale": "",
+						"textDictionary": {
+							"CARD_TITLE": "Competency Gap Overview",
+							"CARD_SUBTITLE": "Role-Based Competency Gaps"
+						}
+					}
+				]
+			},
+			{
+				"_version": "3.2.0",
+				"identification": {
+					"id": "competencycards.certification.app",
+					"title": "{{CARD_TITLE}}",
+					"entityType": "businessapp",
+					"description": "{{description}}"
+				},
+				"payload": {
+					"visualizations": {
+						"competencycards.certification.viz": {
+							"vizType": "sap.card",
+							"vizConfig": {
+								"sap.app": {
+									"id": "competencycards.certification",
+									"type": "card",
+									"title": "{{CARD_TITLE}}",
+									"subTitle": "{{CARD_SUBTITLE}}",
+									"applicationVersion": {
+										"version": "1.0.3"
+									},
+									"i18n": "i18n/i18n.properties"
+								},
+								"sap.ui": {
+									"technology": "UI5"
+								},
+								"sap.card": {
+									"type": "Analytical",
+									"extension": "./CardExtension",
+									"configuration": {
+										"destinations": {
+											"comp_mat_card": {
+												"name": "comp_mat_card",
+												"defaultUrl": "https://flexso-extensions-dev-cmtrx-v3-cmtrx-srv.cfapps.eu10.hana.ondemand.com"
+											}
+										}
+									},
+									"data": {
+										"extension": {
+											"method": "getData"
+										}
+									},
+									"header": {
+										"title": "{{CARD_TITLE}}",
+										"subtitle": "{defaultFullName}"
+									},
+									"content": {
+										"chartType": "Donut",
+										"actions": [
+											{
+												"type": "Custom",
+												"action": "onChartSelect",
+												"parameters": {
+													"label": "{label}"
+												}
+											}
+										],
+										"legend": {
+											"visible": true,
+											"position": "Right"
+										},
+										"plotArea": {
+											"dataLabel": {
+												"visible": true,
+												"hideWhenOverlap": true
+											}
+										},
+										"chartProperties": {
+											"plotArea": {
+												"colorPalette": [
+													"#107E3E",
+													"#E9730C",
+													"#BB0000"
+												]
+											},
+											"interaction": {
+												"selectability": {
+													"mode": "SINGLE"
+												}
+											}
+										},
+										"title": {
+											"text": "{{CHART_TITLE}}",
+											"visible": true,
+											"alignment": "Left"
+										},
+										"data": {
+											"path": "/gapSummary"
+										},
+										"dimensions": [
+											{
+												"name": "Gap Status",
+												"value": "{label}"
+											}
+										],
+										"measures": [
+											{
+												"name": "Count",
+												"value": "{count}"
+											}
+										],
+										"feeds": [
+											{
+												"uid": "color",
+												"type": "Dimension",
+												"values": [
+													"Gap Status"
+												]
+											},
+											{
+												"uid": "size",
+												"type": "Measure",
+												"values": [
+													"Count"
+												]
+											}
+										]
+									}
+								}
+							},
+							"vizResources": {
+								"artifactId": "competencycards.certification"
+							}
+						}
+					}
+				},
+				"texts": [
+					{
+						"locale": "",
+						"textDictionary": {
+							"CARD_TITLE": "Certification Assessments",
+							"CARD_SUBTITLE": "Certification Assessment Overview",
+							"CHART_TITLE": "Certification Gap Overview"
+						}
+					}
+				]
+			},
+			{
+				"_version": "3.2.0",
+				"identification": {
+					"id": "competencycards.certificationStatus.app",
+					"title": "{{CARD_TITLE}}",
+					"entityType": "businessapp",
+					"description": "{{description}}"
+				},
+				"payload": {
+					"visualizations": {
+						"competencycards.certificationStatus.viz": {
+							"vizType": "sap.card",
+							"vizConfig": {
+								"sap.app": {
+									"id": "competencycards.certificationStatus",
+									"type": "card",
+									"title": "{{CARD_TITLE}}",
+									"subTitle": "{{CARD_SUBTITLE}}",
+									"description": "{{CARD_SUBTITLE}}",
+									"applicationVersion": {
+										"version": "1.0.1"
+									},
+									"i18n": "i18n/i18n.properties"
+								},
+								"sap.ui": {
+									"technology": "UI5"
+								},
+								"sap.card": {
+									"type": "Component",
+									"configuration": {
+										"destinations": {
+											"comp_mat_card": {
+												"name": "comp_mat_card",
+												"defaultUrl": "https://flexso-consumer-dev.launchpad.cfapps.eu10.hana.ondemand.com/dynamic_dest/comp_mat_card"
+											}
+										}
+									},
+									"header": {
+										"title": "{{CARD_TITLE}}"
+									}
+								},
+								"sap.ui5": {
+									"dependencies": {
+										"minUI5Version": "1.96.0",
+										"libs": {
+											"sap.m": {},
+											"sap.ui.core": {}
+										}
+									},
+									"rootView": {
+										"viewName": "competencycards.certificationStatus.view.Main",
+										"type": "XML",
+										"async": true,
+										"id": "main"
+									}
+								}
+							},
+							"vizResources": {
+								"artifactId": "competencycards.certificationStatus"
+							}
+						}
+					}
+				},
+				"texts": [
+					{
+						"locale": "",
+						"textDictionary": {
+							"CARD_TITLE": "Certification Status",
+							"CARD_SUBTITLE": "Filter a group and inspect certifications by status"
+						}
+					}
+				]
+			},
+			{
+				"_version": "3.2.0",
+				"identification": {
+					"id": "competencycards.aggregated.app",
+					"title": "{{CARD_TITLE}}",
+					"entityType": "businessapp",
+					"description": "{{description}}"
+				},
+				"payload": {
+					"visualizations": {
+						"competencycards.aggregated.viz": {
+							"vizType": "sap.card",
+							"vizConfig": {
+								"sap.app": {
+									"id": "competencycards.aggregated",
+									"type": "card",
+									"title": "{{CARD_TITLE}}",
+									"subTitle": "{{CARD_SUBTITLE}}",
+									"description": "{{CARD_SUBTITLE}}",
+									"applicationVersion": {
+										"version": "1.2.5"
+									},
+									"i18n": "i18n/i18n.properties"
+								},
+								"sap.ui": {
+									"technology": "UI5"
+								},
+								"sap.card": {
+									"type": "Component",
+									"configuration": {
+										"destinations": {
+											"comp_mat_card": {
+												"name": "comp_mat_card",
+												"defaultUrl": "https://flexso-consumer-dev.launchpad.cfapps.eu10.hana.ondemand.com/dynamic_dest/comp_mat_card"
+											}
+										}
+									},
+									"header": {
+										"title": "{{CARD_TITLE}}",
+										"subTitle": "{{CARD_SUBTITLE}}"
+									}
+								},
+								"sap.ui5": {
+									"dependencies": {
+										"minUI5Version": "1.96.0",
+										"libs": {
+											"sap.m": {},
+											"sap.ui.core": {}
+										}
+									},
+									"rootView": {
+										"viewName": "competencycards.aggregated.view.Main",
+										"type": "XML",
+										"async": true,
+										"id": "main"
+									}
+								}
+							},
+							"vizResources": {
+								"artifactId": "competencycards.aggregated"
+							}
+						}
+					}
+				},
+				"texts": [
+					{
+						"locale": "",
+						"textDictionary": {
+							"CARD_TITLE": "Role Readiness",
+							"CARD_SUBTITLE": "Shared Role Score"
+						}
+					}
+				]
+			},
+			{
+				"_version": "3.2.0",
+				"identification": {
+					"id": "competencycards.certifications.app",
+					"title": "{{CARD_TITLE}}",
+					"entityType": "businessapp",
+					"description": "{{description}}"
+				},
+				"payload": {
+					"visualizations": {
+						"competencycards.certifications.viz": {
+							"vizType": "sap.card",
+							"vizConfig": {
+								"sap.app": {
+									"id": "competencycards.certifications",
+									"type": "card",
+									"title": "{{CARD_TITLE}}",
+									"subTitle": "{{CARD_SUBTITLE}}",
+									"applicationVersion": {
+										"version": "1.0.1"
+									},
+									"i18n": "i18n/i18n.properties"
+								},
+								"sap.ui": {
+									"technology": "UI5"
+								},
+								"sap.card": {
+									"type": "List",
+									"extension": "./CardExtension",
+									"configuration": {
+										"destinations": {
+											"comp_mat_card": {
+												"name": "comp_mat_card",
+												"defaultUrl": "https://flexso-extensions-dev-cmtrx-v3-cmtrx-srv.cfapps.eu10.hana.ondemand.com"
+											}
+										}
+									},
+									"data": {
+										"extension": {
+											"method": "getData"
+										}
+									},
+									"header": {
+										"title": "{{CARD_TITLE}}",
+										"subtitle": "{defaultFullName}",
+										"status": {
+											"text": "{statusText}"
+										}
+									},
+									"content": {
+										"data": {
+											"path": "/items"
+										},
+										"item": {
+											"title": "{title}",
+											"description": "{description}",
+											"highlight": "{highlight}",
+											"info": {
+												"value": "{infoText}"
+											}
+										}
+									}
+								}
+							},
+							"vizResources": {
+								"artifactId": "competencycards.certifications"
+							}
+						}
+					}
+				},
+				"texts": [
+					{
+						"locale": "",
+						"textDictionary": {
+							"CARD_TITLE": "Certifications",
+							"CARD_SUBTITLE": "Certifications List"
+						}
+					}
+				]
+			},
+			{
+				"_version": "3.2.0",
+				"identification": {
+					"id": "competencycards.competencies.app",
+					"title": "{{CARD_TITLE}}",
+					"entityType": "businessapp",
+					"description": "{{description}}"
+				},
+				"payload": {
+					"visualizations": {
+						"competencycards.competencies.viz": {
+							"vizType": "sap.card",
+							"vizConfig": {
+								"sap.app": {
+									"id": "competencycards.competencies",
+									"type": "card",
+									"title": "{{CARD_TITLE}}",
+									"subTitle": "{{CARD_SUBTITLE}}",
+									"applicationVersion": {
+										"version": "1.0.0"
+									},
+									"i18n": "i18n/i18n.properties"
+								},
+								"sap.ui": {
+									"technology": "UI5"
+								},
+								"sap.card": {
+									"type": "List",
+									"extension": "./CardExtension",
+									"configuration": {
+										"destinations": {
+											"comp_mat_card": {
+												"name": "comp_mat_card",
+												"defaultUrl": "https://flexso-extensions-dev-cmtrx-v3-cmtrx-srv.cfapps.eu10.hana.ondemand.com"
+											}
+										}
+									},
+									"data": {
+										"extension": {
+											"method": "getData"
+										}
+									},
+									"header": {
+										"title": "{{CARD_TITLE}}",
+										"subtitle": "{defaultFullName}",
+										"status": {
+											"text": "{statusText}"
+										}
+									},
+									"content": {
+										"data": {
+											"path": "/items"
+										},
+										"item": {
+											"title": "{title}",
+											"description": "{description}",
+											"highlight": "{highlight}",
+											"info": {
+												"value": "{infoText}"
+											}
+										}
+									}
+								}
+							},
+							"vizResources": {
+								"artifactId": "competencycards.competencies"
+							}
+						}
+					}
+				},
+				"texts": [
+					{
+						"locale": "",
+						"textDictionary": {
+							"CARD_TITLE": "Competencies",
+							"CARD_SUBTITLE": "Competencies List"
+						}
+					}
+				]
+			},
+			{
+				"_version": "3.2.0",
+				"identification": {
+					"id": "competencycards.overdueCertificatesV2.app",
+					"title": "{{CARD_TITLE}}",
+					"entityType": "businessapp",
+					"description": "{{description}}"
+				},
+				"payload": {
+					"visualizations": {
+						"competencycards.overdueCertificatesV2.viz": {
+							"vizType": "sap.card",
+							"vizConfig": {
+								"sap.app": {
+									"id": "competencycards.overdueCertificatesV2",
+									"type": "card",
+									"title": "{{CARD_TITLE}}",
+									"subTitle": "{{CARD_SUBTITLE}}",
+									"applicationVersion": {
+										"version": "1.0.6"
+									},
+									"i18n": "i18n/i18n.properties"
+								},
+								"sap.ui": {
+									"technology": "UI5"
+								},
+								"sap.card": {
+									"type": "Component",
+									"configuration": {
+										"destinations": {
+											"comp_mat_card": {
+												"name": "comp_mat_card",
+												"defaultUrl": "https://flexso-consumer-dev.launchpad.cfapps.eu10.hana.ondemand.com/dynamic_dest/comp_mat_card"
+											}
+										}
+									},
+									"header": {
+										"title": "{{CARD_TITLE}}",
+										"subTitle": "{{CARD_SUBTITLE}}"
+									}
+								},
+								"sap.ui5": {
+									"dependencies": {
+										"minUI5Version": "1.96.0",
+										"libs": {
+											"sap.m": {},
+											"sap.ui.core": {}
+										}
+									},
+									"rootView": {
+										"viewName": "competencycards.overdueCertificatesV2.view.Main",
+										"type": "XML",
+										"async": true,
+										"id": "main"
+									}
+								}
+							},
+							"vizResources": {
+								"artifactId": "competencycards.overdueCertificatesV2"
+							}
+						}
+					}
+				},
+				"texts": [
+					{
+						"locale": "",
+						"textDictionary": {
+							"CARD_TITLE": "Overdue Certificates",
+							"CARD_SUBTITLE": "Certificates overdue or expiring soon"
+						}
+					}
+				]
+			},
+			{
+				"_version": "3.2.0",
+				"identification": {
+					"id": "competencycards.overdueCertificatesV3.app",
+					"title": "{{CARD_TITLE}}",
+					"entityType": "businessapp",
+					"description": "{{description}}"
+				},
+				"payload": {
+					"visualizations": {
+						"competencycards.overdueCertificatesV3.viz": {
+							"vizType": "sap.card",
+							"vizConfig": {
+								"sap.app": {
+									"id": "competencycards.overdueCertificatesV3",
+									"type": "card",
+									"title": "{{CARD_TITLE}}",
+									"subTitle": "{{CARD_SUBTITLE}}",
+									"applicationVersion": {
+										"version": "1.0.1"
+									},
+									"i18n": "i18n/i18n.properties"
+								},
+								"sap.ui": {
+									"technology": "UI5"
+								},
+								"sap.card": {
+									"type": "Component",
+									"configuration": {
+										"destinations": {
+											"comp_mat_card": {
+												"name": "comp_mat_card",
+												"defaultUrl": "https://flexso-consumer-dev.launchpad.cfapps.eu10.hana.ondemand.com/dynamic_dest/comp_mat_card"
+											}
+										}
+									},
+									"header": {
+										"title": "{{CARD_TITLE}}",
+										"subTitle": "{{CARD_SUBTITLE}}"
+									}
+								},
+								"sap.ui5": {
+									"dependencies": {
+										"minUI5Version": "1.96.0",
+										"libs": {
+											"sap.m": {},
+											"sap.ui.core": {}
+										}
+									},
+									"rootView": {
+										"viewName": "competencycards.overdueCertificatesV3.view.Main",
+										"type": "XML",
+										"async": true,
+										"id": "main"
+									}
+								}
+							},
+							"vizResources": {
+								"artifactId": "competencycards.overdueCertificatesV3"
+							}
+						}
+					}
+				},
+				"texts": [
+					{
+						"locale": "",
+						"textDictionary": {
+							"CARD_TITLE": "Team Certificate Status",
+							"CARD_SUBTITLE": "Compact team overview for overdue and expiring certificates"
+						}
+					}
+				]
+			},
+			{
+				"_version": "3.2.0",
+				"identification": {
+					"id": "competencycards.profile.app",
+					"title": "{{CARD_TITLE}}",
+					"entityType": "businessapp",
+					"description": "{{description}}"
+				},
+				"payload": {
+					"visualizations": {
+						"competencycards.profile.viz": {
+							"vizType": "sap.card",
+							"vizConfig": {
+								"sap.app": {
+									"id": "competencycards.profile",
+									"type": "card",
+									"title": "{{CARD_TITLE}}",
+									"subTitle": "{{CARD_SUBTITLE}}",
+									"applicationVersion": {
+										"version": "1.1.6"
+									},
+									"i18n": "i18n/i18n.properties"
+								},
+								"sap.ui": {
+									"technology": "UI5"
+								},
+								"sap.card": {
+									"type": "Component",
+									"configuration": {
+										"destinations": {
+											"comp_mat_card": {
+												"name": "comp_mat_card",
+												"defaultUrl": "https://flexso-consumer-dev.launchpad.cfapps.eu10.hana.ondemand.com/dynamic_dest/comp_mat_card"
+											}
+										}
+									},
+									"header": {
+										"title": "{{CARD_TITLE}}",
+										"subTitle": "{{CARD_SUBTITLE}}"
+									}
+								},
+								"sap.ui5": {
+									"dependencies": {
+										"minUI5Version": "1.96.0",
+										"libs": {
+											"sap.m": {},
+											"sap.ui.core": {}
+										}
+									},
+									"rootView": {
+										"viewName": "competencycards.profile.view.Main",
+										"type": "XML",
+										"async": true,
+										"id": "main"
+									}
+								}
+							},
+							"vizResources": {
+								"artifactId": "competencycards.profile"
+							}
+						}
+					}
+				},
+				"texts": [
+					{
+						"locale": "",
+						"textDictionary": {
+							"CARD_TITLE": "Profile Summary",
+							"CARD_SUBTITLE": "Employee Profile Summary"
+						}
+					}
+				]
+			},
+			{
+				"_version": "3.2.0",
+				"identification": {
+					"id": "competencycards.all.app",
+					"title": "{{CARD_TITLE}}",
+					"entityType": "businessapp",
+					"description": "{{description}}"
+				},
+				"payload": {
+					"visualizations": {
+						"competencycards.all.viz": {
+							"vizType": "sap.card",
+							"vizConfig": {
+								"sap.app": {
+									"id": "competencycards.all",
+									"type": "card",
+									"title": "{{CARD_TITLE}}",
+									"subTitle": "{{CARD_SUBTITLE}}",
+									"applicationVersion": {
+										"version": "1.0.0"
+									},
+									"i18n": "i18n/i18n.properties"
+								},
+								"sap.ui": {
+									"technology": "UI5"
+								},
+								"sap.card": {
+									"type": "List",
+									"extension": "./CardExtension",
+									"configuration": {
+										"destinations": {
+											"comp_mat_card": {
+												"name": "comp_mat_card",
+												"defaultUrl": "https://flexso-extensions-dev-cmtrx-v3-cmtrx-srv.cfapps.eu10.hana.ondemand.com"
+											}
+										}
+									},
+									"data": {
+										"extension": {
+											"method": "getData"
+										}
+									},
+									"header": {
+										"title": "{{CARD_TITLE}}",
+										"subtitle": "{defaultFullName}",
+										"status": {
+											"text": "{statusText}"
+										}
+									},
+									"content": {
+										"data": {
+											"path": "/items"
+										},
+										"item": {
+											"title": "{title}",
+											"description": "{description}",
+											"highlight": "{highlight}",
+											"icon": {
+												"src": "{icon}"
+											},
+											"info": {
+												"value": "{infoText}"
+											}
+										}
+									},
+									"footer": {
+										"actionsStrip": [
+											{
+												"text": "{{FILTER_ALL}}",
+												"overflowPriority": "NeverOverflow",
+												"actions": [
+													{
+														"type": "Custom",
+														"parameters": {
+															"filterType": "all"
+														}
+													}
+												]
+											},
+											{
+												"text": "{{FILTER_CERTIFICATIONS}}",
+												"overflowPriority": "NeverOverflow",
+												"actions": [
+													{
+														"type": "Custom",
+														"parameters": {
+															"filterType": "Certification"
+														}
+													}
+												]
+											},
+											{
+												"text": "{{FILTER_COMPETENCES}}",
+												"overflowPriority": "NeverOverflow",
+												"actions": [
+													{
+														"type": "Custom",
+														"parameters": {
+															"filterType": "Competency"
+														}
+													}
+												]
+											}
+										]
+									}
+								}
+							},
+							"vizResources": {
+								"artifactId": "competencycards.all"
+							}
+						}
+					}
+				},
+				"texts": [
+					{
+						"locale": "",
+						"textDictionary": {
+							"CARD_TITLE": "All Assessments",
+							"CARD_SUBTITLE": "All Assessments Overview",
+							"FILTER_ALL": "All",
+							"FILTER_CERTIFICATIONS": "Certifications",
+							"FILTER_COMPETENCES": "Competences"
+						}
+					}
+				]
+			},
+			{
+				"_version": "3.2.0",
+				"identification": {
+					"id": "competencycards.autoUpdatedOverview.app",
+					"title": "{{CARD_TITLE}}",
+					"entityType": "businessapp",
+					"description": "{{description}}"
+				},
+				"payload": {
+					"visualizations": {
+						"competencycards.autoUpdatedOverview.viz": {
+							"vizType": "sap.card",
+							"vizConfig": {
+								"sap.app": {
+									"id": "competencycards.autoUpdatedOverview",
+									"type": "card",
+									"title": "{{CARD_TITLE}}",
+									"subTitle": "{{CARD_SUBTITLE}}",
+									"applicationVersion": {
+										"version": "1.0.14"
+									},
+									"i18n": "i18n/i18n.properties"
+								},
+								"sap.ui": {
+									"technology": "UI5"
+								},
+								"sap.card": {
+									"type": "Component",
+									"configuration": {
+										"destinations": {
+											"comp_mat_card": {
+												"name": "comp_mat_card",
+												"defaultUrl": "https://flexso-consumer-dev.launchpad.cfapps.eu10.hana.ondemand.com/dynamic_dest/comp_mat_card"
+											}
+										}
+									},
+									"header": {
+										"title": "{{CARD_TITLE}}",
+										"subTitle": "{{CARD_SUBTITLE}}"
+									}
+								},
+								"sap.ui5": {
+									"dependencies": {
+										"minUI5Version": "1.96.0",
+										"libs": {
+											"sap.m": {},
+											"sap.ui.core": {}
+										}
+									},
+									"rootView": {
+										"viewName": "competencycards.autoUpdatedOverview.view.Main",
+										"type": "XML",
+										"async": true,
+										"id": "main"
+									}
+								}
+							},
+							"vizResources": {
+								"artifactId": "competencycards.autoUpdatedOverview"
+							}
+						}
+					}
+				},
+				"texts": [
+					{
+						"locale": "",
+						"textDictionary": {
+							"CARD_TITLE": "Auto-Updated Assessments ",
+							"CARD_SUBTITLE": "Overview of automatically updated items"
+						}
+					}
+				]
+			}
+		]
+	}
+}

@@ -1,0 +1,19 @@
+{
+    "proximus-role": {
+        "type": "role",
+        "src": {
+            "from": "./cmd/src",
+            "content": "role.json"
+        }
+    },
+    "proximus-card":{
+        "type": "card",
+        "src": {
+            "from": "./cards/proximus",
+            "manifest": "manifest.json"
+        }
+    }
+
+
+
+}

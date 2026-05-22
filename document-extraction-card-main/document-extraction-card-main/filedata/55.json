@@ -1,0 +1,62 @@
+[
+  {
+    "category": "PO nr",
+    "percentage": 1,
+    "missingFiles": []
+  },
+  {
+    "category": "Supplier Order Nr",
+    "percentage": 0,
+    "missingFiles": []
+  },
+  {
+    "category": "Order Date",
+    "percentage": 1,
+    "missingFiles": []
+  },
+  {
+    "category": "Supplier Name",
+    "percentage": 1,
+    "missingFiles": []
+  },
+  {
+    "category": "Customer name",
+    "percentage": 1,
+    "missingFiles": []
+  },
+  {
+    "category": "Currency",
+    "percentage": 0,
+    "missingFiles": []
+  },
+  {
+    "category": "Article Number",
+    "percentage": 1,
+    "missingFiles": []
+  },
+  {
+    "category": "Description",
+    "percentage": 1,
+    "missingFiles": []
+  },
+  {
+    "category": "Quantity",
+    "percentage": 1,
+    "missingFiles": []
+  },
+  {
+    "category": "UoM",
+    "percentage": 0,
+    "missingFiles": []
+  },
+  {
+    "category": "Unit Price",
+    "percentage": 0,
+    "missingFiles": []
+  },
+  {
+    "category": "Delivery Date",
+    "percentage": 1,
+    "missingFiles": []
+  }
+]

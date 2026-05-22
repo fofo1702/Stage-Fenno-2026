@@ -1,0 +1,33 @@
+{
+    "training-role": {
+        "type": "role",
+        "src": {
+            "from": "./training_hours",
+            "content": "role.json"
+        }
+    },
+
+    "training-card": {
+        "type": "card",
+        "src": {
+            "from": "./training_hours",
+            "manifest": "manifest.json"
+        }
+    },
+
+    "table-card": {
+        "type": "card",
+        "src": {
+            "from": "./training-table-card",
+            "manifest": "manifest.json"
+        }
+    },
+
+    "glance-card": {
+        "type": "card",
+        "src": {
+            "from": "./training-hours-glance-card",
+            "manifest": "manifest.json"
+        }
+    }
+}

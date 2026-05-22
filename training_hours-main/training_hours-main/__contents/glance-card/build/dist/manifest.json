@@ -1,0 +1,124 @@
+{
+	"sap.app": {
+		"id": "trainingHoursGlanceCard",
+		"type": "card",
+		"title": "{{CARD_TITLE}}",
+		"applicationVersion": {
+			"version": "1.0.0"
+		},
+		"i18n": "i18n/i18n.properties"
+	},
+	"sap.ui": {
+		"technology": "UI5"
+	},
+	"sap.card": {
+		"type": "Analytical",
+		"configuration": {
+			"destinations": {
+				"trainingApi": {
+					"name": "just_a_clone",
+					"defaultUrl": "https://flexso-consumer-devtrt-dev.cfapps.eu10.hana.ondemand.com/training-reports"
+				}
+			}
+		},
+		"header": {
+			"title": "{{CARD_TITLE}}",
+			"subTitle": "{{CARD_SUBTITLE}}",
+			"icon": {
+				"src": "sap-icon://learning-assistant"
+			},
+			"actions": [
+				{
+					"type": "Navigation",
+					"parameters": {
+						"url": "https://flexso-consumer-dev.launchpad.cfapps.eu10.hana.ondemand.com/site?siteId=c527b1f3-011c-44f0-9e42-0374d6614bdf#trt-display?sap-ui-app-id-hint=fcb76296-3bd5-4183-9ab9-17e259c977d9_com.flexso.trt",
+						"target": "_blank"
+					}
+				}
+			]
+		},
+		"content": {
+			"chartType": "StackedBar",
+			"popover": {
+				"active": true
+			},
+			"data": {
+				"request": {
+					"url": "{{destinations.trainingApi}}/training-reports",
+					"withCredentials": true
+				},
+				"path": "/"
+			},
+			"chartProperties": {
+				"title": {
+					"visible": false
+				},
+				"legendGroup": {
+					"position": "bottom",
+					"alignment": "topLeft"
+				},
+				"plotArea": {
+					"colorPalette": [
+						"#0064D9",
+						"#91C8F6",
+						"#E76500"
+					],
+					"dataLabel": {
+						"visible": false
+					}
+				},
+				"categoryAxis": {
+					"title": {
+						"visible": false
+					}
+				},
+				"valueAxis": {
+					"title": {
+						"visible": false
+					}
+				}
+			},
+			"measures": [
+				{
+					"name": "Spent Hours",
+					"value": "{spentHours}"
+				},
+				{
+					"name": "Planned Hours",
+					"value": "{plannedHours}"
+				},
+				{
+					"name": "Entitled Hours",
+					"value": "{entitledHours}"
+				}
+			],
+			"dimensions": [
+				{
+					"name": "Year",
+					"value": "{year}"
+				}
+			],
+			"feeds": [
+				{
+					"type": "Dimension",
+					"uid": "categoryAxis",
+					"values": [
+						"Year"
+					]
+				},
+				{
+					"type": "Measure",
+					"uid": "valueAxis",
+					"values": [
+						"Spent Hours",
+						"Planned Hours",
+						"Entitled Hours"
+					]
+				}
+			]
+		}
+	},
+	"sap.ui5": {
+		"flexBundle": false
+	}
+}

@@ -1,0 +1,128 @@
+{
+  "sap.app": {
+    "id": "trainingListCard",
+    "type": "card",
+    "title": "Training Learning History",
+    "subTitle": "Recent courses",
+    "applicationVersion": {
+      "version": "1.0.0"
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5"
+  },
+  "sap.card": {
+    "type": "List",
+    "header": {
+      "title": "Training Learning History",
+      "subTitle": "Recent courses",
+      "icon": {
+        "src": "sap-icon://learning-assistant"
+      }
+    },
+    "content": {
+      "data": {
+        "json": {
+          "items": [
+            {
+              "title": "MM_251211_GIT1313_SPECIFIC",
+              "status": "Completed Course",
+              "highlight": "Success",
+              "hours": "24h",
+              "date": "11 Dec 2025",
+              "type": "COURSE"
+            },
+            {
+              "title": "251205_RF_TST_2",
+              "status": "Completed Course",
+              "highlight": "Success",
+              "hours": "12h",
+              "date": "5 Dec 2025",
+              "type": "COURSE"
+            },
+            {
+              "title": "RF_251201_GIT1313_LEARNINGHISTORY_1",
+              "status": "Completed Course",
+              "highlight": "Success",
+              "hours": "9h",
+              "date": "1 Dec 2025",
+              "type": "COURSE"
+            },
+            {
+              "title": "RF_2710_GIT1263",
+              "status": "Completed Course",
+              "highlight": "Success",
+              "hours": "8h",
+              "date": "27 Oct 2025",
+              "type": "COURSE"
+            },
+            {
+              "title": "Follow-up",
+              "status": "Failed Course",
+              "highlight": "Error",
+              "hours": "25h",
+              "date": "3 Jul 2025",
+              "type": "COURSE"
+            },
+            {
+              "title": "Digital Leadership in 2024",
+              "status": "Completed Course",
+              "highlight": "Success",
+              "hours": "8h",
+              "date": "16 Jun 2025",
+              "type": "COURSE"
+            },
+            {
+              "title": "Communication Management",
+              "status": "Failed Course",
+              "highlight": "Error",
+              "hours": "20h",
+              "date": "13 Jun 2025",
+              "type": "COURSE"
+            },
+            {
+              "title": "Strategy Training",
+              "status": "Completed Course",
+              "highlight": "Success",
+              "hours": "16h",
+              "date": "2 Jun 2025",
+              "type": "COURSE"
+            },
+            {
+              "title": "Prevention training",
+              "status": "Completed Course",
+              "highlight": "Success",
+              "hours": "15.62h",
+              "date": "17 Jan 2025",
+              "type": "COURSE"
+            },
+            {
+              "title": "Leading Globally",
+              "status": "Completed Course",
+              "highlight": "Success",
+              "hours": "16h",
+              "date": "7 Jun 2024",
+              "type": "COURSE"
+            }
+          ]
+        },
+        "path": "/items"
+      },
+      "item": {
+        "title": "{title}",
+        "description": "{type} · {date}",
+        "info": {
+          "value": "{hours}"
+        },
+        "highlight": "{highlight}",
+        "attributes": [
+          {
+            "label": "Status",
+            "value": "{status}"
+          }
+        ]
+      },
+      "maxItems": 10
+    }
+  }
+}

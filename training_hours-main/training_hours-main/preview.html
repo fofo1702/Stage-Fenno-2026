@@ -1,0 +1,1316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Training Hours Card – Preview</title>
+  <script id="sap-ui-bootstrap"
+    src="https://ui5.sap.com/resources/sap-ui-integration.js"
+    data-sap-ui-theme="sap_horizon"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #0d1b2a 0%, #1a2f4e 60%, #0d1b2a 100%);
+      font-family: "72", -apple-system, Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 48px 24px 64px;
+      gap: 16px;
+    }
+
+    .preview-label {
+      color: rgba(255,255,255,0.35);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    ui-integration-card {
+      width: 860px;
+      max-width: 95vw;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.08);
+    }
+
+    .hint {
+      color: rgba(255,255,255,0.25);
+      font-size: 12px;
+      letter-spacing: 0.04em;
+      margin-top: 4px;
+    }
+
+    /* Overlay */
+    .overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.65);
+      backdrop-filter: blur(8px);
+      z-index: 999;
+      align-items: center;
+      justify-content: center;
+    }
+    .overlay.active { display: flex; }
+
+    /* Modal */
+    .modal {
+      background: linear-gradient(160deg, #1e3354 0%, #13253f 100%);
+      border: 1px solid rgba(255,255,255,0.13);
+      border-radius: 20px;
+      padding: 36px;
+      width: 440px;
+      max-width: 92vw;
+      box-shadow: 0 40px 100px rgba(0,0,0,0.6);
+      animation: popIn 0.26s cubic-bezier(0.34,1.56,0.64,1) both;
+    }
+    @keyframes popIn {
+      from { opacity:0; transform: scale(0.86) translateY(20px); }
+      to   { opacity:1; transform: scale(1)    translateY(0); }
+    }
+
+    .modal-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 24px;
+    }
+    .modal-year {
+      font-size: 64px;
+      font-weight: 900;
+      color: white;
+      line-height: 1;
+      letter-spacing: -3px;
+    }
+    .modal-badge {
+      padding: 6px 16px;
+      border-radius: 24px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      margin-top: 8px;
+    }
+    .badge-over   { background: rgba(220,30,30,0.2);  color: #ff6b6b; border: 1px solid rgba(255,107,107,0.4); }
+    .badge-track  { background: rgba(29,176,87,0.2);  color: #1DB057; border: 1px solid rgba(29,176,87,0.4); }
+    .badge-empty  { background: rgba(255,255,255,0.07); color: rgba(255,255,255,0.4); border: 1px solid rgba(255,255,255,0.12); }
+
+    /* Ring */
+    .ring-wrap {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      margin-bottom: 24px;
+    }
+    .ring-inner {
+      position: absolute;
+      text-align: center;
+      pointer-events: none;
+    }
+    .ring-pct { font-size: 32px; font-weight: 900; color: white; }
+    .ring-sub { font-size: 11px; color: rgba(255,255,255,0.4); margin-top: 3px; }
+
+    /* KPI grid */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .kpi-tile {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: 12px;
+      padding: 16px 10px;
+      text-align: center;
+    }
+    .kpi-tile.spent    .kpi-val { color: #4da6ff; }
+    .kpi-tile.planned  .kpi-val { color: #52d68a; }
+    .kpi-tile.entitled .kpi-val { color: #ffc043; }
+    .kpi-val  { font-size: 26px; font-weight: 900; color: white; }
+    .kpi-unit { font-size: 11px; color: rgba(255,255,255,0.35); }
+    .kpi-name { font-size: 11px; color: rgba(255,255,255,0.5); margin-top: 6px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
+
+    /* Progress */
+    .prog-meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 6px;
+    }
+    .prog-track {
+      background: rgba(255,255,255,0.08);
+      border-radius: 6px;
+      height: 9px;
+      overflow: hidden;
+    }
+    .prog-fill {
+      height: 100%;
+      border-radius: 6px;
+      transition: width 0.7s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    .close-btn {
+      display: block;
+      width: 100%;
+      margin-top: 24px;
+      padding: 13px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 10px;
+      color: rgba(255,255,255,0.7);
+      font-size: 14px;
+      font-family: inherit;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+      letter-spacing: 0.03em;
+    }
+    .close-btn:hover { background: rgba(255,255,255,0.13); color: white; }
+
+    /* Tab switcher */
+    .tab-bar {
+      display: flex;
+      gap: 8px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: 5px;
+    }
+    .tab-btn {
+      padding: 8px 22px;
+      border-radius: 8px;
+      border: none;
+      background: transparent;
+      color: rgba(255,255,255,0.45);
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      letter-spacing: 0.03em;
+      transition: background 0.2s, color 0.2s;
+    }
+    .tab-btn:hover { color: rgba(255,255,255,0.8); }
+    .tab-btn.active {
+      background: rgba(0,112,242,0.25);
+      color: #4da6ff;
+      border: 1px solid rgba(0,112,242,0.4);
+    }
+    .card-panel { display: none; width: 100%; align-items: center; flex-direction: column; gap: 16px; }
+    .card-panel.active { display: flex; }
+
+    /* Fancy grid */
+    .fancy-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 28px;
+      width: 100%;
+      max-width: 1320px;
+    }
+    .fancy-card-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      flex: 0 0 380px;
+      max-width: 95vw;
+    }
+    .fancy-card-wrap ui-integration-card {
+      width: 100%;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow:
+        0 24px 60px rgba(0,0,0,0.55),
+        0 0 0 1px rgba(255,255,255,0.10),
+        0 0 40px rgba(0,112,242,0.12);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .fancy-card-wrap ui-integration-card:hover {
+      transform: translateY(-6px) scale(1.012);
+      box-shadow:
+        0 40px 90px rgba(0,0,0,0.65),
+        0 0 0 1px rgba(255,255,255,0.16),
+        0 0 60px rgba(0,112,242,0.22);
+    }
+    .fancy-label {
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.22);
+    }
+    .fancy-badge {
+      display: inline-block;
+      padding: 3px 12px;
+      border-radius: 20px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: rgba(0,112,242,0.18);
+      color: #4da6ff;
+      border: 1px solid rgba(0,112,242,0.35);
+    }
+
+    /* =========================================
+       🔥 FIRE TAB — fully custom, no UI5 cards
+       ========================================= */
+    .fire-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 28px;
+      width: 100%;
+      max-width: 1020px;
+    }
+    .fire-heading {
+      text-align: center;
+    }
+    .fire-title-text {
+      font-size: 30px;
+      font-weight: 900;
+      letter-spacing: -0.5px;
+      background: linear-gradient(90deg,#ff6b35,#ffe66d,#06ffa5,#4ecdc4,#a855f7,#ff6b35);
+      background-size: 400% 100%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: fireShift 6s linear infinite;
+    }
+    @keyframes fireShift {
+      0%   { background-position: 0%   50%; }
+      100% { background-position: 400% 50%; }
+    }
+    .fire-sub {
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.2);
+      margin-top: 5px;
+    }
+
+    /* Section glass card */
+    .fire-section {
+      width: 100%;
+      background: rgba(255,255,255,0.025);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 22px;
+      padding: 28px 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 22px;
+    }
+    .fire-section-hdr {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .fire-section-hdr span {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.25);
+    }
+    .fire-section-hdr::before {
+      content: '';
+      display: inline-block;
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: currentColor;
+      opacity: 0.5;
+    }
+
+    /* Rings row */
+    .rings-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 28px;
+    }
+    .ring-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+    .ring-year  { font-size: 12px; font-weight: 700; letter-spacing: 0.08em; color: rgba(255,255,255,0.55); }
+    .ring-spent { font-size: 10px; color: rgba(255,255,255,0.28); }
+    @keyframes ringPulse {
+      0%,100% { filter: drop-shadow(0 0 6px var(--rc)); }
+      50%      { filter: drop-shadow(0 0 20px var(--rc)) drop-shadow(0 0 50px var(--rc)); }
+    }
+
+    /* Bars */
+    .fire-bars-list { display: flex; flex-direction: column; gap: 18px; width: 100%; }
+    .fire-bar-row   { display: flex; flex-direction: column; gap: 5px; }
+    .fire-bar-meta  { display: flex; justify-content: space-between; font-size: 11px; color: rgba(255,255,255,0.4); }
+    .fire-bar-meta b { color: rgba(255,255,255,0.85); }
+    .fire-bar-vals  { display: flex; gap: 18px; }
+    .fire-bar-track {
+      height: 11px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 8px;
+      overflow: hidden;
+      position: relative;
+    }
+    .fire-bar-fill {
+      height: 100%;
+      border-radius: 8px;
+      width: 0%;
+      position: relative;
+      transition: width 1.4s cubic-bezier(0.16,1,0.3,1);
+    }
+    .fire-bar-fill::after {
+      content: '';
+      position: absolute;
+      right: 0; top: 0;
+      width: 40px; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.35));
+      animation: barShine 2.4s ease-in-out infinite;
+    }
+    @keyframes barShine {
+      0%,100% { opacity: 0; transform: translateX(-30px); }
+      50%      { opacity: 1; transform: translateX(0px); }
+    }
+
+    /* Canvas */
+    #bubble-canvas {
+      border-radius: 16px;
+      cursor: crosshair;
+      max-width: 100%;
+    }
+
+    /* ============================================================
+       🌌 RADAR TAB
+    ============================================================ */
+    .radar-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 28px;
+      width: 100%;
+      max-width: 1020px;
+    }
+    #radar-canvas {
+      border-radius: 18px;
+      cursor: default;
+      max-width: 100%;
+      filter: drop-shadow(0 0 30px rgba(168,85,247,0.22));
+    }
+    .radar-legend {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px 24px;
+    }
+    .radar-legend-item {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 11px;
+      color: rgba(255,255,255,0.5);
+    }
+    .radar-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* ============================================================
+       🔥 HEATMAP TAB
+    ============================================================ */
+    .heatmap-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 32px;
+      width: 100%;
+      max-width: 1020px;
+    }
+    .heatmap-scores {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 16px;
+      width: 100%;
+    }
+    .score-tile {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 16px;
+      padding: 22px 28px;
+      text-align: center;
+      min-width: 140px;
+    }
+    .score-val {
+      font-size: 44px;
+      font-weight: 900;
+      line-height: 1;
+      font-variant-numeric: tabular-nums;
+    }
+    .score-unit { font-size: 12px; color: rgba(255,255,255,0.3); margin-top: 4px; }
+    .score-name { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.22); margin-top: 8px; }
+    #heatmap-canvas {
+      border-radius: 14px;
+      max-width: 100%;
+    }
+    .heatmap-legend-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 10px;
+      color: rgba(255,255,255,0.25);
+    }
+    .hm-swatch {
+      width: 14px; height: 14px;
+      border-radius: 3px;
+    }
+  </style>
+</head>
+<body>
+
+  <span class="preview-label">Card Preview — Training Hours per Year (mock data)</span>
+
+  <div class="tab-bar">
+    <button class="tab-btn active" onclick="switchTab('chart')">📊 Chart Card</button>
+    <button class="tab-btn" onclick="switchTab('table')">📋 Table Card</button>
+    <button class="tab-btn" onclick="switchTab('details')">🔍 Details Card</button>
+    <button class="tab-btn" onclick="switchTab('test-list')">🧪 Test · List</button>
+    <button class="tab-btn" onclick="switchTab('test-table')">🧪 Test · Table</button>
+    <button class="tab-btn" onclick="switchTab('test-bar')">🧪 Test · Bar</button>
+    <button class="tab-btn" onclick="switchTab('fancy')">✨ Fancy</button>
+    <button class="tab-btn" onclick="switchTab('fire')">🔥 Fire</button>
+    <button class="tab-btn" onclick="switchTab('radar')">🌌 Radar</button>
+    <button class="tab-btn" onclick="switchTab('heatmap')">🟥 Heatmap</button>
+  </div>
+
+  <!-- Chart Card -->
+  <div class="card-panel active" id="panel-chart">
+    <ui-integration-card id="trainingCard"
+      manifest="./training_hours/manifest.preview.json">
+    </ui-integration-card>
+    <span class="hint">↑ Grouped columns — Spent / Planned / Entitlement per year</span>
+  </div>
+
+  <!-- Table Card -->
+  <div class="card-panel" id="panel-table">
+    <ui-integration-card id="trainingTableCard"
+      manifest="./training_table/manifest.preview.json">
+    </ui-integration-card>
+    <span class="hint">↑ Click a row to highlight — colour-coded status per year</span>
+  </div>
+
+  <!-- Details Card -->
+  <div class="card-panel" id="panel-details">
+    <ui-integration-card id="trainingDetailsCard"
+      manifest="./training_details/manifest.preview.json">
+    </ui-integration-card>
+    <span class="hint">↑ All 56 training items — blue = entitlement, red = over budget, green = remaining</span>
+  </div>
+
+  <!-- Test List Card -->
+  <div class="card-panel" id="panel-test-list">
+    <ui-integration-card id="trainingListTestCard"
+      manifest="./training-list-card/manifest.json">
+    </ui-integration-card>
+    <span class="hint">↑ List layout — individual courses, colour-coded by pass/fail</span>
+  </div>
+
+  <!-- Test Table Card -->
+  <div class="card-panel" id="panel-test-table">
+    <ui-integration-card id="trainingTableTestCard"
+      manifest="./training-table-card/manifest.json">
+    </ui-integration-card>
+    <span class="hint">↑ Table layout — year summary with Spent / Planned / Entitled columns</span>
+  </div>
+
+  <!-- Test Bar Card -->
+  <div class="card-panel" id="panel-test-bar">
+    <ui-integration-card id="trainingBarTestCard"
+      manifest="./training-bar-card/manifest.json">
+    </ui-integration-card>
+    <span class="hint">↑ Bar chart — Spent vs Planned vs Entitled per year</span>
+  </div>
+
+  <!-- Fancy Cards -->
+  <div class="card-panel" id="panel-fancy">
+    <div class="fancy-grid">
+
+      <div class="fancy-card-wrap">
+        <span class="fancy-badge">KPI · Donut</span>
+        <ui-integration-card id="trainingKpiCard"
+          manifest="./training-kpi-card/manifest.json">
+        </ui-integration-card>
+        <span class="fancy-label">2026 spend vs entitlement — donut breakdown</span>
+      </div>
+
+      <div class="fancy-card-wrap">
+        <span class="fancy-badge">Trend · Multi-line</span>
+        <ui-integration-card id="trainingTrendCard"
+          manifest="./training-trend-card/manifest.json">
+        </ui-integration-card>
+        <span class="fancy-label">3-year trajectory — spent, planned &amp; entitled</span>
+      </div>
+
+      <div class="fancy-card-wrap">
+        <span class="fancy-badge">Timeline</span>
+        <ui-integration-card id="trainingTimelineCard"
+          manifest="./training-timeline-card/manifest.json">
+        </ui-integration-card>
+        <span class="fancy-label">Recent activity — colour-coded pass / fail</span>
+      </div>
+
+      <div class="fancy-card-wrap">
+        <span class="fancy-badge">At a Glance · Stacked</span>
+        <ui-integration-card id="trainingHoursGlanceCard"
+          manifest="./training-hours-glance-card/manifest.json">
+        </ui-integration-card>
+        <span class="fancy-label">2026 spent vs remaining vs entitled — stacked bar + numeric KPI header</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 🔥 Fire Panel -->
+  <div class="card-panel" id="panel-fire">
+    <div class="fire-wrap">
+
+      <div class="fire-heading">
+        <div class="fire-title-text">⚡ Training Intelligence</div>
+        <div class="fire-sub">raw canvas · svg · zero graph libraries</div>
+      </div>
+
+      <!-- Section 1: Budget Rings -->
+      <div class="fire-section">
+        <div class="fire-section-hdr"><span>Budget Utilisation by Year — spent ÷ entitled · ring fills then glows</span></div>
+        <div class="rings-row" id="fire-rings-row"></div>
+      </div>
+
+      <!-- Section 2: Bubble Universe -->
+      <div class="fire-section">
+        <div class="fire-section-hdr"><span>Course Universe — bubble size = hours · 🟢 pass · 🔴 fail · hover to inspect</span></div>
+        <canvas id="bubble-canvas" width="940" height="400"></canvas>
+      </div>
+
+      <!-- Section 3: Neon Bars -->
+      <div class="fire-section">
+        <div class="fire-section-hdr"><span>Hours Breakdown — animated neon bars per year</span></div>
+        <div class="fire-bars-list" id="fire-bars-list"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 🌌 Radar Panel -->
+  <div class="card-panel" id="panel-radar">
+    <div class="radar-wrap">
+      <div class="fire-heading">
+        <div class="fire-title-text">🌌 Year Profile Radar</div>
+        <div class="fire-sub">5 axes · spent · planned · entitled · courses · completion rate</div>
+      </div>
+      <canvas id="radar-canvas" width="900" height="520"></canvas>
+      <div class="radar-legend" id="radar-legend"></div>
+    </div>
+  </div>
+
+  <!-- 🟥 Heatmap Panel -->
+  <div class="card-panel" id="panel-heatmap">
+    <div class="heatmap-wrap">
+      <div class="fire-heading">
+        <div class="fire-title-text">🟥 Training Activity Heatmap</div>
+        <div class="fire-sub">course completions plotted week by week · 2024–2026</div>
+      </div>
+      <div class="heatmap-scores" id="hm-scores"></div>
+      <canvas id="heatmap-canvas" width="940" height="280"></canvas>
+      <div class="heatmap-legend-row">
+        <span>Less</span>
+        <div class="hm-swatch" style="background:#111827"></div>
+        <div class="hm-swatch" style="background:#1e3a5f"></div>
+        <div class="hm-swatch" style="background:#0070f2"></div>
+        <div class="hm-swatch" style="background:#52d68a"></div>
+        <div class="hm-swatch" style="background:#ffe66d"></div>
+        <span>More</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Popover overlay -->
+  <div class="overlay" id="overlay" onclick="handleOverlayClick(event)">
+    <div class="modal" id="modal">
+
+      <div class="modal-top">
+        <div class="modal-year" id="m-year">—</div>
+        <span class="modal-badge badge-empty" id="m-badge">—</span>
+      </div>
+
+      <!-- Animated ring -->
+      <div class="ring-wrap">
+        <svg width="140" height="140" viewBox="0 0 140 140">
+          <circle cx="70" cy="70" r="56"
+            fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="14"/>
+          <circle id="ring-arc" cx="70" cy="70" r="56"
+            fill="none" stroke="#4da6ff" stroke-width="14"
+            stroke-linecap="round"
+            stroke-dasharray="351.9"
+            stroke-dashoffset="351.9"
+            transform="rotate(-90 70 70)"
+            style="transition: stroke-dashoffset 0.8s cubic-bezier(0.4,0,0.2,1), stroke 0.4s ease"/>
+        </svg>
+        <div class="ring-inner">
+          <div class="ring-pct" id="m-pct">0%</div>
+          <div class="ring-sub">of entitlement</div>
+        </div>
+      </div>
+
+      <!-- KPI tiles -->
+      <div class="kpi-grid">
+        <div class="kpi-tile spent">
+          <div class="kpi-val" id="m-spent">—</div>
+          <div class="kpi-unit">hrs</div>
+          <div class="kpi-name">Spent</div>
+        </div>
+        <div class="kpi-tile planned">
+          <div class="kpi-val" id="m-planned">—</div>
+          <div class="kpi-unit">hrs</div>
+          <div class="kpi-name">Planned</div>
+        </div>
+        <div class="kpi-tile entitled">
+          <div class="kpi-val" id="m-entitled">—</div>
+          <div class="kpi-unit">hrs</div>
+          <div class="kpi-name">Entitled</div>
+        </div>
+      </div>
+
+      <!-- Progress bar -->
+      <div class="prog-meta">
+        <span>Spent vs Entitled</span>
+        <span id="m-remaining-label">—</span>
+      </div>
+      <div class="prog-track">
+        <div class="prog-fill" id="m-prog" style="width:0%"></div>
+      </div>
+
+      <button class="close-btn" onclick="closeModal()">✕ &nbsp; Close</button>
+    </div>
+  </div>
+
+  <script>
+    const CIRC = 351.9;
+
+    const DATA = {
+      "2024": { spentHours: 103.8,  plannedHours: 15,    entitledHours: 22.8 },
+      "2025": { spentHours: 275.62, plannedHours: 242.5, entitledHours: 22.8 },
+      "2026": { spentHours: 49.5,   plannedHours: 24,    entitledHours: 22.8 },
+      "2027": { spentHours: 0,       plannedHours: 0,     entitledHours: 22.8 },
+      "2028": { spentHours: 0,       plannedHours: 0,     entitledHours: 22.8 }
+    };
+
+    function showDetails(year, d) {
+      if (!d) d = DATA[String(year)];
+      if (!d) return;
+
+      const pct     = d.entitledHours > 0 ? (d.spentHours / d.entitledHours) * 100 : 0;
+      const isOver  = d.spentHours > d.entitledHours;
+      const isEmpty = d.spentHours === 0 && d.plannedHours === 0;
+      const remaining = d.entitledHours - d.spentHours;
+      const arcColor  = isOver ? '#ff6b6b' : isEmpty ? 'rgba(255,255,255,0.15)' : '#4da6ff';
+
+      document.getElementById('m-year').textContent    = year;
+      document.getElementById('m-spent').textContent   = d.spentHours;
+      document.getElementById('m-planned').textContent = d.plannedHours;
+      document.getElementById('m-entitled').textContent= d.entitledHours;
+      document.getElementById('m-pct').textContent     = Math.round(pct) + '%';
+
+      const badge = document.getElementById('m-badge');
+      if (isEmpty) {
+        badge.textContent = 'No activity yet';
+        badge.className   = 'modal-badge badge-empty';
+      } else if (isOver) {
+        badge.textContent = '+' + Math.abs(remaining).toFixed(1) + ' hrs over';
+        badge.className   = 'modal-badge badge-over';
+      } else {
+        badge.textContent = 'On track';
+        badge.className   = 'modal-badge badge-track';
+      }
+
+      const arc = document.getElementById('ring-arc');
+      arc.style.stroke = arcColor;
+      // reset then animate
+      arc.style.transition = 'none';
+      arc.style.strokeDashoffset = CIRC;
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          arc.style.transition = 'stroke-dashoffset 0.8s cubic-bezier(0.4,0,0.2,1), stroke 0.4s ease';
+          arc.style.strokeDashoffset = CIRC - (Math.min(pct, 100) / 100) * CIRC;
+        });
+      });
+
+      const prog = document.getElementById('m-prog');
+      prog.style.transition = 'none';
+      prog.style.width = '0%';
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          prog.style.transition = 'width 0.7s cubic-bezier(0.4,0,0.2,1)';
+          prog.style.width = Math.min(pct, 100) + '%';
+          prog.style.background = arcColor;
+        });
+      });
+
+      const remLabel = document.getElementById('m-remaining-label');
+      if (isEmpty)      remLabel.textContent = d.entitledHours + ' hrs remaining';
+      else if (isOver)  remLabel.textContent = Math.abs(remaining).toFixed(1) + ' hrs OVER limit';
+      else              remLabel.textContent = remaining.toFixed(1) + ' hrs remaining';
+
+      document.getElementById('overlay').classList.add('active');
+    }
+
+    function closeModal() {
+      document.getElementById('overlay').classList.remove('active');
+    }
+
+    function handleOverlayClick(e) {
+      if (e.target === document.getElementById('overlay')) closeModal();
+    }
+
+    const TABS = ['chart', 'table', 'details', 'test-list', 'test-table', 'test-bar', 'fancy', 'fire', 'radar', 'heatmap'];
+
+    function switchTab(tab) {
+      document.querySelectorAll('.tab-btn').forEach((b, i) => {
+        b.classList.toggle('active', TABS[i] === tab);
+      });
+      TABS.forEach(t => {
+        document.getElementById('panel-' + t).classList.toggle('active', t === tab);
+      });
+      if (tab === 'fire')    { initFireTab(); }
+      else                   { stopBubbles(); }
+      if (tab === 'radar')   initRadarTab();
+      if (tab === 'heatmap') initHeatmapTab();
+    }
+
+    /* ============================================================
+       🔥 FIRE TAB DATA
+    ============================================================ */
+    const FY = [
+      { year: 2024, spent: 103.8,  planned: 15,    ent: 22.8 },
+      { year: 2025, spent: 275.62, planned: 242.5, ent: 22.8 },
+      { year: 2026, spent: 49.5,   planned: 24,    ent: 22.8 },
+      { year: 2027, spent: 0,      planned: 0,     ent: 22.8 },
+      { year: 2028, spent: 0,      planned: 0,     ent: 22.8 }
+    ];
+
+    const FC = [
+      { t: 'Improve Emotional IQ',   h: 46.5, ok: true  },
+      { t: 'Leading Globally',       h: 16,   ok: true  },
+      { t: 'SF Learning Overview',   h: 8,    ok: true  },
+      { t: 'Time Management',        h: 4,    ok: true  },
+      { t: 'Test incorrect date',    h: 2,    ok: false },
+      { t: 'MM_251211_GIT1313',      h: 24,   ok: true  },
+      { t: 'RF_251201_GIT1313',      h: 9,    ok: true  },
+      { t: 'Follow-up (x3 fails)',   h: 25,   ok: false },
+      { t: 'Digital Leadership',     h: 8,    ok: true  },
+      { t: 'Communication Mgmt',     h: 20,   ok: false },
+      { t: 'Strategy Training',      h: 16,   ok: true  },
+      { t: 'Prevention training',    h: 15.6, ok: true  },
+      { t: 'RF_2710_GIT1263',        h: 8,    ok: true  },
+      { t: 'Excel: Advanced',        h: 12,   ok: false },
+      { t: 'MMM Reminder 2602',      h: 18,   ok: true  },
+      { t: 'MMMTestForceApproval',   h: 7.5,  ok: true  }
+    ];
+
+    let _bubbleAnim = null;
+    let _fireInited = false;
+
+    function initFireTab() {
+      if (_fireInited) { startBubbles(); return; }
+      _fireInited = true;
+      buildFireRings();
+      buildFireBars();
+      initBubbleCanvas();
+    }
+
+    /* ---- Rings ---- */
+    function buildFireRings() {
+      const R = 52, CIRC = 2 * Math.PI * R;
+      const row = document.getElementById('fire-rings-row');
+      FY.forEach((d, i) => {
+        const pct   = d.ent > 0 ? d.spent / d.ent : 0;
+        const fill  = Math.min(pct, 1);
+        const empty = d.spent === 0;
+        const over  = pct > 1;
+        const col   = empty ? 'rgba(255,255,255,0.1)'
+                    : over  ? '#ff6b35'
+                    :         '#06ffa5';
+        const lbl   = empty ? '–' : Math.round(pct * 100) + '%';
+        const delay = i * 0.18;
+        const div   = document.createElement('div');
+        div.className = 'ring-item';
+        div.innerHTML = `
+          <svg width="128" height="128" viewBox="0 0 128 128"
+               style="--rc:${col}; animation: ringPulse ${2.6 + i * 0.2}s ease-in-out infinite;">
+            <defs>
+              <linearGradient id="rg${d.year}" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%"   stop-color="${col}" stop-opacity="1"/>
+                <stop offset="100%" stop-color="${over ? '#ffe66d' : col}" stop-opacity="0.7"/>
+              </linearGradient>
+              <filter id="rf${d.year}">
+                <feGaussianBlur stdDeviation="3" result="b"/>
+                <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+              </filter>
+            </defs>
+            <circle cx="64" cy="64" r="${R}" fill="none"
+              stroke="rgba(255,255,255,0.05)" stroke-width="10"/>
+            <circle cx="64" cy="64" r="${R}" fill="none"
+              stroke="url(#rg${d.year})" stroke-width="10"
+              stroke-linecap="round"
+              stroke-dasharray="${CIRC}"
+              stroke-dashoffset="${CIRC}"
+              transform="rotate(-90 64 64)"
+              filter="url(#rf${d.year})"
+              class="ring-arc"
+              style="transition: stroke-dashoffset 1.5s cubic-bezier(0.16,1,0.3,1) ${delay}s"
+              data-t="${CIRC - fill * CIRC}"/>
+            <text x="64" y="59" text-anchor="middle" fill="white"
+              font-size="21" font-weight="900" font-family="72,Arial,sans-serif">${lbl}</text>
+            <text x="64" y="75" text-anchor="middle"
+              fill="rgba(255,255,255,0.35)" font-size="9"
+              font-family="72,Arial,sans-serif" letter-spacing="1.5">${empty ? 'NO DATA' : over ? 'OVER' : 'OK'}</text>
+          </svg>
+          <div class="ring-year">${d.year}</div>
+          <div class="ring-spent">${d.spent}h spent</div>
+        `;
+        row.appendChild(div);
+      });
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        row.querySelectorAll('.ring-arc').forEach(a => {
+          a.style.strokeDashoffset = a.dataset.t;
+        });
+      }));
+    }
+
+    /* ---- Neon Bars ---- */
+    function buildFireBars() {
+      const el = document.getElementById('fire-bars-list');
+      const maxH = Math.max(...FY.map(d => Math.max(d.spent, d.planned)));
+      FY.forEach((d, i) => {
+        const sp = (d.spent   / maxH * 100).toFixed(1);
+        const pl = (d.planned / maxH * 100).toFixed(1);
+        const en = (d.ent     / maxH * 100).toFixed(1);
+        const row = document.createElement('div');
+        row.className = 'fire-bar-row';
+        row.innerHTML = `
+          <div class="fire-bar-meta">
+            <b>${d.year}</b>
+            <div class="fire-bar-vals">
+              <span style="color:#4da6ff">⬛ Spent ${d.spent}h</span>
+              <span style="color:#52d68a">⬛ Planned ${d.planned}h</span>
+              <span style="color:#f0ab00">⬛ Entitled ${d.ent}h</span>
+            </div>
+          </div>
+          <div class="fire-bar-track">
+            <div class="fire-bar-fill" data-w="${sp}"
+              style="background:linear-gradient(90deg,#003d99,#4da6ff);box-shadow:0 0 14px rgba(77,166,255,0.6)"></div>
+          </div>
+          <div class="fire-bar-track">
+            <div class="fire-bar-fill" data-w="${pl}"
+              style="background:linear-gradient(90deg,#0d6632,#52d68a);box-shadow:0 0 14px rgba(82,214,138,0.6)"></div>
+          </div>
+          <div class="fire-bar-track">
+            <div class="fire-bar-fill" data-w="${en}"
+              style="background:linear-gradient(90deg,#7a4800,#f0ab00);box-shadow:0 0 14px rgba(240,171,0,0.6)"></div>
+          </div>
+        `;
+        el.appendChild(row);
+      });
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        el.querySelectorAll('.fire-bar-fill').forEach(f => {
+          f.style.width = f.dataset.w + '%';
+        });
+      }));
+    }
+
+    /* ---- Bubble Canvas ---- */
+    function initBubbleCanvas() {
+      const cv  = document.getElementById('bubble-canvas');
+      const ctx = cv.getContext('2d');
+      const W = cv.width, H = cv.height;
+      const maxH = Math.max(...FC.map(c => c.h));
+
+      const bubbles = FC.map(c => ({
+        x:  60  + Math.random() * (W - 120),
+        y:  50  + Math.random() * (H - 100),
+        r:  16  + (c.h / maxH) * 52,
+        vx: (Math.random() - 0.5) * 0.55,
+        vy: (Math.random() - 0.5) * 0.55,
+        ph: Math.random() * Math.PI * 2,
+        lbl: c.t,
+        hrs: c.h,
+        ok:  c.ok,
+        a:   0
+      }));
+
+      let fade = 0, hovered = -1;
+
+      cv.addEventListener('mousemove', e => {
+        const rect = cv.getBoundingClientRect();
+        const mx = (e.clientX - rect.left) * (W / rect.width);
+        const my = (e.clientY - rect.top)  * (H / rect.height);
+        hovered = bubbles.findIndex(b => Math.hypot(b.x - mx, b.y - my) < b.r);
+      });
+      cv.addEventListener('mouseleave', () => { hovered = -1; });
+
+      function draw(ts) {
+        ctx.clearRect(0, 0, W, H);
+        fade = Math.min(fade + 0.018, 1);
+
+        bubbles.forEach((b, idx) => {
+          b.a = fade;
+          b.x += b.vx;
+          b.y += b.vy + Math.sin(ts * 0.0009 + b.ph) * 0.28;
+          if (b.x - b.r < 0)   { b.x = b.r;   b.vx =  Math.abs(b.vx); }
+          if (b.x + b.r > W)   { b.x = W-b.r; b.vx = -Math.abs(b.vx); }
+          if (b.y - b.r < 0)   { b.y = b.r;   b.vy =  Math.abs(b.vy); }
+          if (b.y + b.r > H)   { b.y = H-b.r; b.vy = -Math.abs(b.vy); }
+
+          const isHov = idx === hovered;
+          const rgb   = b.ok ? '0,220,120' : '255,80,80';
+          const scale = isHov ? b.r + 8 : b.r;
+
+          /* outer pulse on hover */
+          if (isHov) {
+            ctx.beginPath();
+            ctx.arc(b.x, b.y, scale + 10, 0, Math.PI*2);
+            ctx.fillStyle = `rgba(${rgb},0.08)`;
+            ctx.fill();
+          }
+
+          /* radial fill */
+          const g = ctx.createRadialGradient(
+            b.x - b.r*0.28, b.y - b.r*0.28, b.r*0.05,
+            b.x, b.y, scale);
+          g.addColorStop(0, `rgba(${rgb},${0.65*b.a})`);
+          g.addColorStop(1, `rgba(${rgb},${0.06*b.a})`);
+          ctx.beginPath();
+          ctx.arc(b.x, b.y, scale, 0, Math.PI*2);
+          ctx.fillStyle = g;
+          ctx.fill();
+
+          /* rim */
+          ctx.strokeStyle = `rgba(${rgb},${(isHov ? 0.95 : 0.55)*b.a})`;
+          ctx.lineWidth   = isHov ? 2.5 : 1.5;
+          ctx.stroke();
+
+          /* highlight glint */
+          ctx.beginPath();
+          ctx.arc(b.x - scale*0.3, b.y - scale*0.3, scale*0.18, 0, Math.PI*2);
+          ctx.fillStyle = `rgba(255,255,255,${0.18*b.a})`;
+          ctx.fill();
+
+          /* label */
+          const fs   = Math.max(9, scale * 0.28);
+          const maxC = Math.max(4, Math.floor(scale * 0.38));
+          const lbl  = b.lbl.length > maxC ? b.lbl.slice(0, maxC) + '…' : b.lbl;
+          ctx.fillStyle    = `rgba(255,255,255,${(isHov ? 1 : 0.88)*b.a})`;
+          ctx.font         = `700 ${fs}px 72,Arial,sans-serif`;
+          ctx.textAlign    = 'center';
+          ctx.textBaseline = 'middle';
+          ctx.fillText(lbl, b.x, b.y - fs*0.55);
+
+          ctx.fillStyle = `rgba(255,255,255,${(isHov ? 0.75 : 0.45)*b.a})`;
+          ctx.font      = `${fs * 0.85}px 72,Arial,sans-serif`;
+          ctx.fillText(b.hrs + 'h', b.x, b.y + fs*0.65);
+
+          /* tooltip on hover */
+          if (isHov) {
+            const tip = b.lbl + ' · ' + b.hrs + 'h · ' + (b.ok ? '✓ Pass' : '✗ Fail');
+            const tw  = ctx.measureText(tip).width + 20;
+            const tx  = Math.min(Math.max(b.x - tw/2, 4), W - tw - 4);
+            const ty  = b.y - scale - 38;
+            ctx.fillStyle    = 'rgba(10,20,40,0.88)';
+            ctx.strokeStyle  = `rgba(${rgb},0.7)`;
+            ctx.lineWidth    = 1;
+            ctx.beginPath();
+            ctx.roundRect(tx, ty, tw, 28, 6);
+            ctx.fill(); ctx.stroke();
+            ctx.fillStyle    = 'rgba(255,255,255,0.9)';
+            ctx.font         = '11px 72,Arial,sans-serif';
+            ctx.textAlign    = 'left';
+            ctx.textBaseline = 'middle';
+            ctx.fillText(tip, tx + 10, ty + 14);
+          }
+        });
+        _bubbleAnim = requestAnimationFrame(draw);
+      }
+      startBubbles = () => { if (!_bubbleAnim) _bubbleAnim = requestAnimationFrame(draw); };
+      stopBubbles  = () => { cancelAnimationFrame(_bubbleAnim); _bubbleAnim = null; };
+      _bubbleAnim = requestAnimationFrame(draw);
+    }
+
+    function startBubbles() {}
+    function stopBubbles()  {}
+
+    /* ============================================================
+       🌌 RADAR
+    ============================================================ */
+    let _radarDone = false;
+    function initRadarTab() {
+      if (_radarDone) return;
+      _radarDone = true;
+
+      const cv  = document.getElementById('radar-canvas');
+      const ctx = cv.getContext('2d');
+      const W = cv.width, H = cv.height;
+      const cx = W / 2, cy = H / 2 + 10;
+      const AXES = ['Spent h', 'Planned h', 'Entitled h', 'Courses', 'Compl %'];
+      const N = AXES.length;
+      const R = 190;
+
+      const RYEARS = [
+        { label:'2024', col:'#4da6ff', vals:[103.8, 15,    22.8, 11, 73] },
+        { label:'2025', col:'#52d68a', vals:[275.6, 242.5, 22.8, 31, 65] },
+        { label:'2026', col:'#ff6b35', vals:[49.5,  24,    22.8, 4,  75] }
+      ];
+      const maxV = [300, 300, 30, 35, 100];
+
+      /* legend */
+      const leg = document.getElementById('radar-legend');
+      RYEARS.forEach(d => {
+        const li = document.createElement('div');
+        li.className = 'radar-legend-item';
+        li.innerHTML = `<div class="radar-dot" style="background:${d.col}"></div>${d.label}`;
+        leg.appendChild(li);
+      });
+
+      /* particles */
+      const parts = Array.from({length:60}, () => ({
+        x: Math.random()*W, y: Math.random()*H,
+        vx:(Math.random()-0.5)*0.3, vy:(Math.random()-0.5)*0.3,
+        r: 1+Math.random()*1.5, a: Math.random()
+      }));
+
+      let prog = 0;
+      function drawRadar(ts) {
+        ctx.clearRect(0,0,W,H);
+        prog = Math.min(prog + 0.022, 1);
+        const ease = prog < 1 ? 1 - Math.pow(1-prog,3) : 1;
+
+        /* star-field particles */
+        parts.forEach(p => {
+          p.x += p.vx; p.y += p.vy;
+          if (p.x<0) p.x=W; if (p.x>W) p.x=0;
+          if (p.y<0) p.y=H; if (p.y>H) p.y=0;
+          ctx.beginPath();
+          ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+          ctx.fillStyle=`rgba(255,255,255,${p.a*0.25})`;
+          ctx.fill();
+        });
+
+        /* web lines */
+        const LEVELS = 5;
+        for (let lv=1;lv<=LEVELS;lv++) {
+          const lr = R * lv/LEVELS;
+          ctx.beginPath();
+          for(let i=0;i<N;i++) {
+            const a = (Math.PI*2*i/N) - Math.PI/2;
+            const x = cx + Math.cos(a)*lr, y = cy + Math.sin(a)*lr;
+            i===0 ? ctx.moveTo(x,y) : ctx.lineTo(x,y);
+          }
+          ctx.closePath();
+          ctx.strokeStyle = `rgba(255,255,255,${lv===LEVELS?0.12:0.055})`;
+          ctx.lineWidth = lv===LEVELS ? 1.5 : 0.8;
+          ctx.stroke();
+        }
+
+        /* axis lines + labels */
+        AXES.forEach((ax,i) => {
+          const a = (Math.PI*2*i/N) - Math.PI/2;
+          const ex = cx + Math.cos(a)*R, ey = cy + Math.sin(a)*R;
+          ctx.beginPath(); ctx.moveTo(cx,cy); ctx.lineTo(ex,ey);
+          ctx.strokeStyle='rgba(255,255,255,0.10)'; ctx.lineWidth=1; ctx.stroke();
+          const lx = cx + Math.cos(a)*(R+30), ly = cy + Math.sin(a)*(R+30);
+          ctx.fillStyle='rgba(255,255,255,0.45)';
+          ctx.font='bold 11px 72,Arial,sans-serif';
+          ctx.textAlign='center'; ctx.textBaseline='middle';
+          ctx.fillText(ax,lx,ly);
+        });
+
+        /* year polygons */
+        RYEARS.forEach(d => {
+          const pts = d.vals.map((v,i) => {
+            const a = (Math.PI*2*i/N) - Math.PI/2;
+            const r = (v/maxV[i]) * R * ease;
+            return [cx + Math.cos(a)*r, cy + Math.sin(a)*r];
+          });
+          ctx.beginPath();
+          pts.forEach(([x,y],i) => i?ctx.lineTo(x,y):ctx.moveTo(x,y));
+          ctx.closePath();
+          ctx.fillStyle = d.col + '22';
+          ctx.fill();
+          ctx.strokeStyle = d.col;
+          ctx.lineWidth = 2.5;
+          ctx.shadowColor = d.col;
+          ctx.shadowBlur  = 12;
+          ctx.stroke();
+          ctx.shadowBlur  = 0;
+          pts.forEach(([x,y]) => {
+            ctx.beginPath(); ctx.arc(x,y,4,0,Math.PI*2);
+            ctx.fillStyle=d.col; ctx.fill();
+          });
+        });
+
+        /* pulsing centre */
+        const pulse = 0.5 + 0.5*Math.sin(ts*0.003);
+        const cg = ctx.createRadialGradient(cx,cy,0,cx,cy,22);
+        cg.addColorStop(0,`rgba(168,85,247,${0.7*pulse})`); cg.addColorStop(1,'transparent');
+        ctx.beginPath(); ctx.arc(cx,cy,22,0,Math.PI*2);
+        ctx.fillStyle=cg; ctx.fill();
+
+        requestAnimationFrame(drawRadar);
+      }
+      requestAnimationFrame(drawRadar);
+    }
+
+    /* ============================================================
+       🟥 HEATMAP
+    ============================================================ */
+    let _hmDone = false;
+    function initHeatmapTab() {
+      if (_hmDone) return;
+      _hmDone = true;
+
+      const COURSES = [
+        {m:'2024-04',h:4},  {m:'2024-04',h:4},  {m:'2024-03',h:8},
+        {m:'2024-05',h:16}, {m:'2024-06',h:16}, {m:'2024-11',h:2},
+        {m:'2024-11',h:2},  {m:'2024-11',h:2},  {m:'2024-12',h:46.5},
+        {m:'2024-12',h:2},  {m:'2024-12',h:1.3},
+        {m:'2025-01',h:15.6},{m:'2025-02',h:10},{m:'2025-02',h:2},
+        {m:'2025-02',h:2.5},{m:'2025-02',h:2.5},{m:'2025-02',h:10},
+        {m:'2025-03',h:5},  {m:'2025-04',h:8},  {m:'2025-05',h:1},
+        {m:'2025-05',h:4},  {m:'2025-06',h:16}, {m:'2025-06',h:8},
+        {m:'2025-06',h:20}, {m:'2025-07',h:0.5},{m:'2025-07',h:25},
+        {m:'2025-10',h:5},  {m:'2025-10',h:8},  {m:'2025-12',h:9},
+        {m:'2025-12',h:12}, {m:'2025-12',h:24},
+        {m:'2026-02',h:7.5},{m:'2026-02',h:12}, {m:'2026-02',h:18},
+        {m:'2026-03',h:12}
+      ];
+
+      const bucket = {};
+      COURSES.forEach(c => { bucket[c.m] = (bucket[c.m]||0) + c.h; });
+
+      const months = [];
+      let y=2024,mo=1;
+      while(y<2026||(y===2026&&mo<=4)) {
+        const k = `${y}-${String(mo).padStart(2,'0')}`;
+        months.push({ key:k, y, mo, h: bucket[k]||0 });
+        mo++; if(mo>12){mo=1;y++;}
+      }
+
+      const maxH = Math.max(...months.map(m=>m.h),1);
+      const COLS=['#111827','#1e3a5f','#0070f2','#52d68a','#ffe66d'];
+      function col(h) {
+        if(h===0) return COLS[0];
+        const t = h/maxH;
+        if(t<0.2) return COLS[1];
+        if(t<0.5) return COLS[2];
+        if(t<0.8) return COLS[3];
+        return COLS[4];
+      }
+
+      const totalCourses = COURSES.length;
+      const totalHours   = Math.round(COURSES.reduce((a,c)=>a+c.h,0));
+      const activeMos    = months.filter(m=>m.h>0).length;
+      const scoreData = [
+        { val: totalCourses, unit:'items',   name:'Total Entries',  col:'#4da6ff' },
+        { val: totalHours,   unit:'hours',   name:'Total Hours',    col:'#52d68a' },
+        { val: activeMos,    unit:'months',  name:'Active Months',  col:'#f0ab00' },
+        { val: Math.round(totalHours/activeMos), unit:'avg h/mo', name:'Avg Per Month', col:'#a855f7' }
+      ];
+      const scEl = document.getElementById('hm-scores');
+      scoreData.forEach((s,i) => {
+        const tile = document.createElement('div');
+        tile.className = 'score-tile';
+        tile.innerHTML = `<div class="score-val" id="sv-${i}" style="color:${s.col}">0</div>
+          <div class="score-unit">${s.unit}</div>
+          <div class="score-name">${s.name}</div>`;
+        scEl.appendChild(tile);
+      });
+      scoreData.forEach((s,i) => {
+        const el = document.getElementById('sv-'+i);
+        const dur = 1400+i*200, fps=60, steps=dur/1000*fps;
+        let cur=0;
+        const tick = () => { cur=Math.min(cur+s.val/steps,s.val); el.textContent=Math.round(cur); if(cur<s.val) requestAnimationFrame(tick); };
+        setTimeout(()=>requestAnimationFrame(tick), i*120);
+      });
+
+      const cv  = document.getElementById('heatmap-canvas');
+      const ctx = cv.getContext('2d');
+      const W=cv.width, H=cv.height;
+      const PAD=50;
+      const byYear = {};
+      months.forEach(m => { (byYear[m.y]||(byYear[m.y]=[])).push(m); });
+      const years = Object.keys(byYear);
+      const maxCols = Math.max(...years.map(yr=>byYear[yr].length));
+      const cellW = Math.floor((W-PAD*2)/maxCols)-3;
+      const cellH = 58;
+      const MONTH_NAMES=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+      let scanX = PAD, scanDir = 1;
+
+      function drawHM() {
+        ctx.clearRect(0,0,W,H);
+        years.forEach((yr, ri) => {
+          const ms = byYear[yr];
+          const rowY = 36 + ri*(cellH+28);
+          ctx.fillStyle='rgba(255,255,255,0.3)';
+          ctx.font='bold 11px 72,Arial,sans-serif';
+          ctx.textAlign='left'; ctx.textBaseline='middle';
+          ctx.fillText(yr, 4, rowY+cellH/2);
+          ms.forEach((m, ci) => {
+            const x=PAD+ci*(cellW+3), y=rowY;
+            const c=col(m.h);
+            if(m.h>0){ ctx.shadowColor=c; ctx.shadowBlur=10+(m.h/maxH)*18; }
+            ctx.fillStyle=c;
+            ctx.beginPath(); ctx.roundRect(x,y,cellW,cellH,5); ctx.fill();
+            ctx.shadowBlur=0;
+            ctx.fillStyle=m.h>0?'rgba(255,255,255,0.85)':'rgba(255,255,255,0.18)';
+            ctx.font='9px 72,Arial,sans-serif';
+            ctx.textAlign='center'; ctx.textBaseline='top';
+            ctx.fillText(MONTH_NAMES[m.mo-1], x+cellW/2, y+5);
+            if(m.h>0){
+              ctx.fillStyle='rgba(255,255,255,0.95)';
+              ctx.font=`bold ${Math.max(10,Math.min(14,cellW*0.28))}px 72,Arial,sans-serif`;
+              ctx.textBaseline='middle';
+              ctx.fillText(m.h+'h', x+cellW/2, y+cellH*0.58);
+            }
+          });
+        });
+        const sg=ctx.createLinearGradient(scanX-15,0,scanX+15,0);
+        sg.addColorStop(0,'transparent'); sg.addColorStop(0.5,'rgba(255,255,255,0.07)'); sg.addColorStop(1,'transparent');
+        ctx.fillStyle=sg; ctx.fillRect(scanX-15,0,30,H);
+        scanX+=scanDir*1.2;
+        if(scanX>W-PAD||scanX<PAD) scanDir*=-1;
+        requestAnimationFrame(drawHM);
+      }
+      requestAnimationFrame(drawHM);
+    }
+
+    // Listen to card action (fires when a chart bar is clicked)
+    document.getElementById('trainingCard').addEventListener('action', function(e) {
+      const p = e.detail && e.detail.parameters;
+      if (p && p.year) {
+        showDetails(String(p.year), {
+          spentHours:    parseFloat(p.spentHours)    || 0,
+          plannedHours:  parseFloat(p.plannedHours)  || 0,
+          entitledHours: parseFloat(p.entitledHours) || 22.8
+        });
+      }
+    });
+  </script>
+</body>
+</html>

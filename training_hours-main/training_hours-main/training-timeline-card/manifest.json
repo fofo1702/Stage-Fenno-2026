@@ -1,0 +1,93 @@
+{
+  "sap.app": {
+    "id": "trainingTimelineCard",
+    "type": "card",
+    "title": "Recent Training Activity",
+    "applicationVersion": { "version": "1.0.0" }
+  },
+  "sap.ui": { "technology": "UI5" },
+  "sap.card": {
+    "type": "Timeline",
+    "header": {
+      "title": "Recent Training Activity",
+      "subTitle": "Latest completions and failures",
+      "icon": {
+        "src": "sap-icon://history"
+      }
+    },
+    "content": {
+      "data": {
+        "json": {
+          "items": [
+            {
+              "title": "Excel: Advanced Course",
+              "description": "Failed Course · 12h · 16 Mar 2026",
+              "dateTime": "16 Mar 2026",
+              "icon": "sap-icon://course-book",
+              "iconColor": "Negative"
+            },
+            {
+              "title": "Reminder mail test MMM 2602",
+              "description": "Completed OJT · 18h · 24 Feb 2026",
+              "dateTime": "24 Feb 2026",
+              "icon": "sap-icon://complete",
+              "iconColor": "Positive"
+            },
+            {
+              "title": "Reminder mail test MMM 1802",
+              "description": "Completed OJT · 12h · 16 Feb 2026",
+              "dateTime": "16 Feb 2026",
+              "icon": "sap-icon://complete",
+              "iconColor": "Positive"
+            },
+            {
+              "title": "MMMTestForceApproval0402",
+              "description": "Completed Course · 7.5h · 3 Feb 2026",
+              "dateTime": "3 Feb 2026",
+              "icon": "sap-icon://complete",
+              "iconColor": "Positive"
+            },
+            {
+              "title": "MM_251211_GIT1313_SPECIFIC",
+              "description": "Completed Course · 24h · 11 Dec 2025",
+              "dateTime": "11 Dec 2025",
+              "icon": "sap-icon://complete",
+              "iconColor": "Positive"
+            },
+            {
+              "title": "251205_RF_TST_2",
+              "description": "Completed Course · 12h · 5 Dec 2025",
+              "dateTime": "5 Dec 2025",
+              "icon": "sap-icon://complete",
+              "iconColor": "Positive"
+            },
+            {
+              "title": "Follow-up",
+              "description": "Failed Course · 25h · 3 Jul 2025",
+              "dateTime": "3 Jul 2025",
+              "icon": "sap-icon://course-book",
+              "iconColor": "Negative"
+            },
+            {
+              "title": "Digital Leadership in 2024",
+              "description": "Completed Course · 8h · 16 Jun 2025",
+              "dateTime": "16 Jun 2025",
+              "icon": "sap-icon://complete",
+              "iconColor": "Positive"
+            }
+          ]
+        },
+        "path": "/items"
+      },
+      "item": {
+        "title": { "value": "{title}" },
+        "description": { "value": "{description}" },
+        "dateTime": { "value": "{dateTime}" },
+        "icon": {
+          "src": "{icon}",
+          "backgroundColor": "{iconColor}"
+        }
+      }
+    }
+  }
+}

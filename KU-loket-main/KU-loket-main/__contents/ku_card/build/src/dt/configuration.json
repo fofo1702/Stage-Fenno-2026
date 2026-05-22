@@ -1,0 +1,43 @@
+{
+    "form": {
+        "items": {
+            "cardTitle": {
+                "manifestpath": "/sap.card/header/title",
+                "type": "string",
+                "translatable": true,
+                "label": "Card Title",
+                "defaultValue": "{{CARD_TITLE}}"
+            },
+            "cardSubTitle": {
+                "manifestpath": "/sap.card/header/subTitle",
+                "type": "string",
+                "translatable": true,
+                "label": "Card Subtitle",
+                "defaultValue": "{{CARD_SUBTITLE}}"
+            },
+            "contentMinHeight": {
+                "manifestpath": "/sap.card/content/minHeight",
+                "type": "string",
+                "label": "Minimum Content Height",
+                "defaultValue": "24rem"
+            },
+            "iconSrc": {
+                "manifestpath": "/sap.card/header/icon/src",
+                "type": "string",
+                "label": "Header Icon",
+                "defaultValue": "sap-icon://education",
+                "description": "Any valid sap-icon URI, e.g. sap-icon://education"
+            },
+            "iconColor": {
+                "manifestpath": "/sap.card/header/icon/backgroundColor",
+                "type": "string",
+                "label": "Icon Background Color",
+                "defaultValue": "Accent10",
+                "description": "Use a value from sap.m.AvatarColor, e.g. Accent1–Accent10, Placeholder, TileIcon"
+            }
+        }
+    },
+    "preview": {
+        "modes": "Abstract"
+    }
+}

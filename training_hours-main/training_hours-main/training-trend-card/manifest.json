@@ -1,0 +1,73 @@
+{
+  "sap.app": {
+    "id": "trainingTrendCard",
+    "type": "card",
+    "title": "Training Hours Trend",
+    "applicationVersion": { "version": "1.0.0" }
+  },
+  "sap.ui": { "technology": "UI5" },
+  "sap.card": {
+    "type": "Analytical",
+    "header": {
+      "title": "Training Hours Trend",
+      "subTitle": "Spent · Planned · Entitled — 2024 to 2026",
+      "icon": {
+        "src": "sap-icon://line-chart"
+      }
+    },
+    "content": {
+      "chartType": "line",
+      "data": {
+        "json": {
+          "data": [
+            { "year": "2024", "spentHours": 103.8,  "plannedHours": 15,    "entitledHours": 22.8 },
+            { "year": "2025", "spentHours": 275.62, "plannedHours": 242.5, "entitledHours": 22.8 },
+            { "year": "2026", "spentHours": 49.5,   "plannedHours": 24,    "entitledHours": 22.8 }
+          ]
+        },
+        "path": "/data"
+      },
+      "chartProperties": {
+        "legend": {
+          "visible": true,
+          "position": "bottom"
+        },
+        "plotArea": {
+          "colorPalette": ["#0070F2", "#52D68A", "#F0AB00"],
+          "dataLabel": {
+            "visible": true
+          },
+          "marker": {
+            "visible": true
+          }
+        },
+        "categoryAxis": {
+          "title": { "visible": false }
+        },
+        "valueAxis": {
+          "title": { "visible": true, "text": "Hours" }
+        }
+      },
+      "measures": [
+        { "name": "Spent Hours",    "value": "{spentHours}"    },
+        { "name": "Planned Hours",  "value": "{plannedHours}"  },
+        { "name": "Entitled Hours", "value": "{entitledHours}" }
+      ],
+      "dimensions": [
+        { "name": "Year", "value": "{year}" }
+      ],
+      "feeds": [
+        {
+          "type": "Dimension",
+          "uid": "categoryAxis",
+          "values": ["Year"]
+        },
+        {
+          "type": "Measure",
+          "uid": "valueAxis",
+          "values": ["Spent Hours", "Planned Hours", "Entitled Hours"]
+        }
+      ]
+    }
+  }
+}

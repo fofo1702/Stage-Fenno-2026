@@ -1,0 +1,67 @@
+{
+    "_version": "3.2.0",
+    "identification": {
+        "id": "competencycards.role",
+        "title": "Competency Role",
+        "entityType": "role"
+    },
+    "payload": {
+        "apps":[
+            {
+                "id": "competencycards.employeeProfile.app"
+            },
+            {
+                "id": "competencycards.assessments.app"
+            },
+         
+            {
+                "id": "competencycards.assessmentComponentV2.app"
+            },
+            {
+                "id": "competencycards.roleFilter.app"
+            },
+            {
+                "id": "competencycards.competencyComponent.app"
+            },
+            {
+                "id": "competencycards.competency.app"
+            },
+            {
+                "id": "competencycards.certification.app"
+            },
+            {
+                "id": "competencycards.aggregated.app"
+            },
+            {
+                "id": "competencycards.certifications.app"
+            },
+            {
+                "id": "competencycards.competencies.app"
+            },
+            {
+                "id": "competencycards.profile.app"
+            },
+            {
+                "id": "competencycards.expiring.app"
+            },
+            {
+                "id": "competencycards.overdueCertificatesV2.app"
+            },
+            {
+                "id": "competencycards.overdueCertificatesV3.app"
+            },
+            {
+                "id": "competencycards.all.app"
+            },
+            {
+                "id": "competencycards.autoUpdatedOverview.app"
+            },
+            {
+                "id": "competencycards.groupComponent.app"
+            },
+            {
+                "id": "competencycards.overdueCertificatesV3.app"
+            }
+        ]
+    }
+}

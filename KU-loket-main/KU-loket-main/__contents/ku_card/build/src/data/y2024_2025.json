@@ -1,0 +1,14 @@
+[
+    { "subject": "YT0708 - PHP & MySQL",                             "result": "12/20", "date": "29.01.2025", "sp": "6", "attempt": "1", "retrieved": "1" },
+    { "subject": "YT0712 - Object Oriented Programming",             "result": "17/20", "date": "29.01.2025", "sp": "6", "attempt": "1", "retrieved": "1" },
+    { "subject": "YT0744 - Python",                                  "result": "15/20", "date": "29.01.2025", "sp": "6", "attempt": "1", "retrieved": "1" },
+    { "subject": "YT0745 - Network Architecture",                    "result": "15/20", "date": "29.01.2025", "sp": "6", "attempt": "1", "retrieved": "1" },
+    { "subject": "YT0790 - Hacking Explained",                       "result": "17/20", "date": "29.01.2025", "sp": "6", "attempt": "1", "retrieved": "1" },
+    { "subject": "YT0679 - Industrial Communication and Networking", "result": "11/20", "date": "25.06.2025", "sp": "3", "attempt": "1", "retrieved": "1" },
+    { "subject": "YT0746 - ICT Technology for Industry",             "result": "15/20", "date": "25.06.2025", "sp": "3", "attempt": "1", "retrieved": "1" },
+    { "subject": "YT0762 - GUI Development",                         "result": "10/20", "date": "25.06.2025", "sp": "3", "attempt": "1", "retrieved": "1" },
+    { "subject": "YT0763 - App Development",                         "result": "13/20", "date": "25.06.2025", "sp": "3", "attempt": "1", "retrieved": "1" },
+    { "subject": "YT0794 - Practice Enterprise ICT - advanced",      "result": "16/20", "date": "25.06.2025", "sp": "9", "attempt": "1", "retrieved": "1" },
+    { "subject": "YT1000 - Software engineering",                    "result": "17/20", "date": "25.06.2025", "sp": "3", "attempt": "1", "retrieved": "1" },
+    { "subject": "YT0713 - Advanced Object Oriented Programming",    "result": "11/20", "date": "04.09.2025", "sp": "6", "attempt": "1", "retrieved": "1" }
+]

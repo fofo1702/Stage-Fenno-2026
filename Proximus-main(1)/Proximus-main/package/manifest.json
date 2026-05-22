@@ -1,0 +1,173 @@
+{
+	"sap.package": {
+		"id": "ns.proximus",
+		"packageVersion": {
+			"version": "1.1.0",
+			"upgradeNotification": "all"
+		},
+		"i18n": "i18n/i18n.properties",
+		"icon": "sap-icon://accept",
+		"title": "myHR",
+		"subTitle": "",
+		"shortTitle": "",
+		"info": "",
+		"description": "",
+		"tags": {
+			"keywords": []
+		},
+		"vendor": {
+			"id": "",
+			"name": "",
+			"url": ""
+		},
+		"products": "",
+		"categories": "",
+		"scope": "external",
+		"license": {
+			"text": "",
+			"url": ""
+		},
+		"homepage": {
+			"text": "",
+			"url": ""
+		},
+		"support": {
+			"url": ""
+		},
+		"contents": [
+			{
+				"manifest": {
+					"_version": "1.27.0",
+					"_generator": "cpkg-project-template",
+					"sap.artifact": {
+						"id": "proximus",
+						"type": "card",
+						"title": "Proximus Card",
+						"imagePath": "images/myHR.png",
+						"artifactVersion": {
+							"version": "1.0.0"
+						}
+					}
+				},
+				"baseURL": "artifacts/proximus-card"
+			}
+		],
+		"documentation": {
+			"url": ""
+		},
+		"consumption": [],
+		"dependencies": {
+			"products": [],
+			"services": []
+		},
+		"destinations": [],
+		"cdmEntities": [
+			{
+				"_version": "3.2.0",
+				"identification": {
+					"id": "proximus.role",
+					"title": "Proximus Role",
+					"entityType": "role"
+				},
+				"payload": {
+					"apps": [
+						{
+							"id": "proximuscard.app"
+						}
+					]
+				},
+				"texts": [
+					{
+						"locale": "",
+						"textDictionary": {}
+					},
+					{
+						"locale": "en",
+						"textDictionary": {}
+					}
+				]
+			},
+			{
+				"_version": "3.2.0",
+				"identification": {
+					"id": "proximus.app",
+					"title": "Proximus Card",
+					"entityType": "businessapp",
+					"description": "{{description}}"
+				},
+				"payload": {
+					"visualizations": {
+						"proximus.viz": {
+							"vizType": "sap.card",
+							"vizConfig": {
+								"_version": "1.84.0",
+								"sap.app": {
+									"id": "proximus",
+									"type": "card",
+									"title": "Proximus Card",
+									"applicationVersion": {
+										"version": "1.0.0"
+									},
+									"imagePath": "images/myHR.png"
+								},
+								"sap.ui": {
+									"technology": "UI5",
+									"icons": {
+										"icon": "sap-icon://technical-object"
+									}
+								},
+								"sap.ui5": {
+									"rootView": {
+										"viewName": "proximus.view",
+										"type": "XML",
+										"async": true,
+										"id": "app"
+									},
+									"resources": {
+										"css": [
+											{
+												"uri": "css/card-tweaks.css"
+											}
+										]
+									},
+									"dependencies": {
+										"minUI5Version": "1.38",
+										"libs": {
+											"sap.m": {},
+											"sap.ui.core": {}
+										}
+									}
+								},
+								"sap.card": {
+									"type": "Component",
+									"configuration": {
+										"editor": "./dt/Configuration",
+										"parameters": {
+											"welcomeText": {
+												"value": "Welcome back 👋"
+											},
+											"welcomeSubtitle": {
+												"value": "Check your HR services below"
+											}
+										}
+									}
+								}
+							},
+							"vizResources": {
+								"artifactId": "proximus"
+							}
+						}
+					}
+				},
+				"texts": [
+					{
+						"locale": "",
+						"textDictionary": {
+							"description": "Business App Description"
+						}
+					}
+				]
+			}
+		]
+	}
+}

@@ -1,0 +1,103 @@
+{
+  "sap.app": {
+    "id": "trainingTableCard",
+    "type": "card",
+    "title": "Training Hours Summary",
+    "subTitle": "Hours by year",
+    "applicationVersion": {
+      "version": "1.0.0"
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5"
+  },
+  "sap.card": {
+    "type": "Table",
+    "header": {
+      "title": "Training Hours Summary",
+      "subTitle": "Hours by year",
+      "icon": {
+        "src": "sap-icon://table-chart"
+      }
+    },
+    "content": {
+      "data": {
+        "json": {
+          "rows": [
+            {
+              "year": "2024",
+              "spentHours": "103.8",
+              "plannedHours": "15",
+              "entitledHours": "22.8",
+              "spentDays": "13.66",
+              "highlight": "None"
+            },
+            {
+              "year": "2025",
+              "spentHours": "275.62",
+              "plannedHours": "242.5",
+              "entitledHours": "22.8",
+              "spentDays": "36.27",
+              "highlight": "None"
+            },
+            {
+              "year": "2026",
+              "spentHours": "49.5",
+              "plannedHours": "24",
+              "entitledHours": "22.8",
+              "spentDays": "6.51",
+              "highlight": "Information"
+            },
+            {
+              "year": "2027",
+              "spentHours": "0",
+              "plannedHours": "0",
+              "entitledHours": "22.8",
+              "spentDays": "0",
+              "highlight": "None"
+            },
+            {
+              "year": "2028",
+              "spentHours": "0",
+              "plannedHours": "0",
+              "entitledHours": "22.8",
+              "spentDays": "0",
+              "highlight": "None"
+            }
+          ]
+        },
+        "path": "/rows"
+      },
+      "row": {
+        "highlight": "{highlight}",
+        "columns": [
+          {
+            "title": "Year",
+            "value": "{year}",
+            "width": "4rem"
+          },
+          {
+            "title": "Spent (h)",
+            "value": "{spentHours}",
+            "hAlign": "End"
+          },
+          {
+            "title": "Planned (h)",
+            "value": "{plannedHours}",
+            "hAlign": "End"
+          },
+          {
+            "title": "Entitled (h)",
+            "value": "{entitledHours}",
+            "hAlign": "End"
+          },
+          {
+            "title": "Spent (days)",
+            "value": "{spentDays}",
+            "hAlign": "End"
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,126 @@
+<mvc:View
+  controllerName="competencycards.groupComponent.controller.Main"
+  displayBlock="true"
+  xmlns="sap.m"
+  xmlns:core="sap.ui.core"
+  xmlns:mvc="sap.ui.core.mvc">
+  <VBox busy="{view>/busy}" class="sapUiSmallMargin">
+    <MessageStrip
+      text="{view>/error}"
+      type="Error"
+      visible="{= !!${view>/error} }" />
+    <HBox wrap="Wrap" class="sapUiTinyMarginBottom">
+      <VBox width="16rem" class="sapUiSmallMarginEnd sapUiTinyMarginBottom">
+        <Label text="{i18n>GROUP_LABEL}" labelFor="groupSelect" />
+        <Select
+          id="groupSelect"
+          change=".onGroupChange"
+          items="{view>/groups}"
+          selectedKey="{view>/selectedGroupKey}">
+          <core:Item key="{view>key}" text="{= ${view>description} || ${view>key} }" />
+        </Select>
+      </VBox>
+      <VBox width="16rem" visible="{= !!${view>/selectedGroup} }" class="sapUiTinyMarginBottom">
+        <Label text="{i18n>ROLE_LABEL}" labelFor="roleSelect" />
+        <Select
+          id="roleSelect"
+          change=".onRoleChange"
+          items="{view>/roles}"
+          selectedKey="{view>/selectedRoleKey}">
+          <core:Item key="{view>key}" text="{view>title}" />
+        </Select>
+      </VBox>
+    </HBox>
+    <VBox
+      visible="{= !!${view>/selectedGroup} }"
+      class="sapUiMediumMarginTop">
+      <Title level="H5" text="{view>/selectedGroup/description}" />
+      <HBox wrap="Wrap" renderType="Bare" class="sapUiMediumMarginTop">
+        <VBox width="22rem" class="sapUiSmallMarginEnd sapUiMediumMarginBottom">
+          <Title level="H6" text="{i18n>TEAM_OVERVIEW}" class="sapUiTinyMarginBottom" />
+          <HBox alignItems="Center" justifyContent="Center" renderType="Bare" wrap="Wrap">
+            <core:HTML id="chartHtml" content="{view>/chartMarkup}" sanitizeContent="false" />
+            <List
+              items="{view>/legendItems}"
+              itemPress=".onLegendPress"
+              showSeparators="None"
+              class="sapUiMediumMarginBegin sapUiTinyMarginTop"
+              width="12rem">
+              <CustomListItem type="Active">
+                <HBox
+                  justifyContent="SpaceBetween"
+                  alignItems="Center"
+                  class="sapUiTinyMarginTopBottom sapUiTinyMarginBegin sapUiTinyMarginEnd">
+                  <HBox alignItems="Center" class="sapUiTinyMarginEnd">
+                    <core:Icon
+                      src="sap-icon://circle-task-2"
+                      color="{view>color}"
+                      class="sapUiTinyMarginEnd" />
+                    <Text text="{view>label}" />
+                  </HBox>
+                </HBox>
+              </CustomListItem>
+            </List>
+          </HBox>
+        </VBox>
+        <VBox width="22rem" class="sapUiMediumMarginBottom">
+          <Title level="H6" text="{i18n>CERTIFICATE_HEALTH}" class="sapUiTinyMarginBottom" />
+          <HBox alignItems="Center" justifyContent="Center" renderType="Bare" wrap="Wrap">
+            <core:HTML id="certificateChartHtml" content="{view>/certificateChartMarkup}" sanitizeContent="false" />
+            <List
+              items="{view>/certificateLegendItems}"
+              itemPress=".onCertificateLegendPress"
+              showSeparators="None"
+              class="sapUiMediumMarginBegin sapUiTinyMarginTop"
+              width="14rem">
+              <CustomListItem type="Active">
+                <HBox
+                  justifyContent="SpaceBetween"
+                  alignItems="Center"
+                  class="sapUiTinyMarginTopBottom sapUiTinyMarginBegin sapUiTinyMarginEnd">
+                  <HBox alignItems="Center" class="sapUiTinyMarginEnd">
+                    <core:Icon
+                      src="sap-icon://circle-task-2"
+                      color="{view>color}"
+                      class="sapUiTinyMarginEnd" />
+                    <Text text="{view>label}" />
+                  </HBox>
+                </HBox>
+              </CustomListItem>
+            </List>
+          </HBox>
+        </VBox>
+      </HBox>
+      <Title level="H6" text="{i18n>TEAM_MEMBERS}" class="sapUiMediumMarginTop sapUiTinyMarginBottom" />
+      <ScrollContainer
+        height="20rem"
+        width="100%"
+        vertical="true"
+        horizontal="false"
+        focusable="true">
+        <List
+          items="{view>/displayedTeamMembers}"
+          noDataText="{i18n>NO_TEAM_MEMBERS}"
+          showSeparators="Inner"
+          width="100%">
+          <CustomListItem>
+            <VBox class="sapUiTinyMarginTop sapUiTinyMarginBottom">
+              <HBox justifyContent="SpaceBetween" wrap="Wrap">
+                <Title level="H6" text="{view>title}" />
+                <ObjectStatus
+                  text="{= ${view>readinessLabel} + ' (' + ${view>readinessDisplay} + ')' }"
+                  state="{view>readinessState}" />
+              </HBox>
+              <Text text="{view>description}" wrapping="true" />
+              <ProgressIndicator
+                percentValue="{view>readinessValue}"
+                displayValue="{view>readinessDisplay}"
+                state="{view>readinessState}"
+                class="sapUiTinyMarginTop" />
+            </VBox>
+          </CustomListItem>
+        </List>
+      </ScrollContainer>
+    </VBox>
+  </VBox>
+</mvc:View>

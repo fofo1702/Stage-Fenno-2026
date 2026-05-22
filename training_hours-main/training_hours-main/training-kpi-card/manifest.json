@@ -1,0 +1,85 @@
+{
+  "sap.app": {
+    "id": "trainingKpiCard",
+    "type": "card",
+    "title": "2026 Training Progress",
+    "applicationVersion": { "version": "1.0.0" }
+  },
+  "sap.ui": { "technology": "UI5" },
+  "sap.card": {
+    "type": "Analytical",
+    "header": {
+      "type": "Numeric",
+      "title": "2026 Training Progress",
+      "subTitle": "Year-to-date · April 10",
+      "unitOfMeasurement": "HRS",
+      "mainIndicator": {
+        "number": "49.5",
+        "unit": "h",
+        "trend": "Up",
+        "state": "Critical"
+      },
+      "sideIndicators": [
+        {
+          "title": "Entitled",
+          "number": "22.8",
+          "unit": "h",
+          "state": "Critical"
+        },
+        {
+          "title": "Planned",
+          "number": "24",
+          "unit": "h",
+          "state": "None"
+        }
+      ]
+    },
+    "content": {
+      "chartType": "donut",
+      "data": {
+        "json": {
+          "items": [
+            { "category": "Spent",    "hours": 49.5 },
+            { "category": "Planned",  "hours": 24   },
+            { "category": "Entitled", "hours": 22.8 }
+          ]
+        },
+        "path": "/items"
+      },
+      "chartProperties": {
+        "legend": {
+          "visible": true,
+          "position": "bottom"
+        },
+        "plotArea": {
+          "colorPalette": ["#0070F2", "#52D68A", "#F0AB00"],
+          "dataLabel": {
+            "visible": true,
+            "type": "percentage"
+          }
+        },
+        "title": {
+          "visible": false
+        }
+      },
+      "measures": [
+        { "name": "Hours", "value": "{hours}" }
+      ],
+      "dimensions": [
+        { "name": "Category", "value": "{category}" }
+      ],
+      "feeds": [
+        {
+          "type": "Measure",
+          "uid": "size",
+          "values": ["Hours"]
+        },
+        {
+          "type": "Dimension",
+          "uid": "color",
+          "values": ["Category"]
+        }
+      ]
+    }
+  }
+}

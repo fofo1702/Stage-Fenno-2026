@@ -1,0 +1,138 @@
+{
+  "_version": "1.15.0",
+  "sap.app": {
+    "id": "graphcard.order.analytics",
+    "type": "card",
+    "title": "{{appTitle}}",
+    "subTitle": "{{appSubTitle}}",
+    "applicationVersion": {
+      "version": "1.0.0"
+    },
+    "i18n": "i18n/i18n.properties"
+  },
+  "sap.ui": {
+    "technology": "UI5"
+  },
+  "sap.card": {
+    "type": "Analytical",
+      "extension": "./extension/Extension",
+    "header": {
+      "title": "{{cardTitle}}",
+      "subTitle": "{{cardSubTitle}}"
+    },
+    "content": {
+      "chartType": "column",
+      "data": {
+        "request": {
+          "url": "./filedata/{filters>/selectedFile/value}.json"
+        }
+      },
+      "popover": {
+        "active": true
+      },
+      "dimensions": [
+        {
+          "name": "Category",
+          "value": "{category}"
+        }
+      ],
+      "measures": [
+        {
+          "name": "Percentage",
+          "value": "{percentage}"
+        }
+      ],
+      "feeds": [
+        {
+          "type": "Dimension",
+          "uid": "categoryAxis",
+          "values": ["Category"]
+        },
+        {
+          "type": "Measure",
+          "uid": "valueAxis",
+          "values": ["Percentage"]
+        }
+      ],
+      "chartProperties": {
+        "title": {
+          "text": "{{chartTitle}}",
+          "visible": true
+        },
+        "legend": {
+          "visible": true,
+          "position": "bottom",
+          "alignment": "center"
+        },
+        "categoryAxis": {
+          "title": {
+            "text": "{{xAxisTitle}}",
+            "visible": false
+          },
+          "label": {
+            "visible": true,
+            "angle": -45,
+            "rotation": "auto",
+            "truncatedLabelRatio": 0,
+            "hideOverlapping": false
+          }
+        },
+        "valueAxis": {
+          "min": 0,
+          "max": 1,
+          "title": {
+            "text": "{{yAxisTitle}}",
+            "visible": true
+          }
+        },
+        "plotArea": {
+          "dataLabel": {
+            "visible": true,
+            "formatString": "#0%"
+          },
+          "dataPointStyle": {
+            "rules": [
+              {
+                "dataContext": { "Percentage": { "min": 0.9999 } },
+                "properties": { "color": "#2B7D2B" },
+                "displayName": "Perfect"
+              },
+              {
+                "dataContext": { "Percentage": { "min": 0.9, "max": 0.9999 } },
+                "properties": { "color": "#E76500" },
+                "displayName": "Good"
+              },
+              {
+                "dataContext": { "Percentage": { "max": 0.9 } },
+                "properties": { "color": "#BB0000" },
+                "displayName": "Bad"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "configuration": {
+      "editor": "dt/Configuration.js",
+      "filters": {
+        "selectedFile": {
+          "type": "Select",
+          "label": "Filter by File",
+          "value": "__all__",
+          "item": {
+            "path": "/items",
+            "template": {
+              "key": "{key}",
+              "title": "{title}"
+            }
+          },
+          "data": {
+            "request": {
+              "url": "./filteritems.json"
+            }
+          }
+        }
+      }
+    }
+  }
+}

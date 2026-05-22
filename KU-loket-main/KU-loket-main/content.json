@@ -1,0 +1,17 @@
+{
+    "ku_role": {
+        "type": "role",
+        "src":{
+            "from": "./roles",
+            "content": "role.json"
+        }
+    },
+    "ku_card": {
+        "type": "card",
+        "src":{
+            "from": "./cards",
+            "manifest": "manifest.json"
+        }
+    }
+
+}

@@ -1,0 +1,57 @@
+<mvc:View
+  displayBlock="true"
+  xmlns="sap.m"
+  xmlns:mvc="sap.ui.core.mvc">
+  <VBox busy="{view>/busy}" class="sapUiSmallMargin">
+    <MessageStrip
+      text="{view>/error}"
+      type="Error"
+      visible="{= !!${view>/error} }"
+      class="sapUiTinyMarginBottom" />
+    <VBox>
+      <Title level="H4" text="{i18n>HEADLINE}" />
+    </VBox>
+
+
+    <FormattedText
+      class="sapUiTinyMarginTop sapUiTinyMarginBottom"
+      visible="{= !!${view>/trainingHtmlText} }"
+      htmlText="{view>/trainingHtmlText}" />
+      
+    <HBox
+      visible="{= !!${view>/trainingUrl} || !!${view>/trainingMessage} }"
+      wrap="Wrap"
+      class="sapUiTinyMarginBottom">
+      <Text text="{i18n>TRAINING_LINK_LABEL}" class="sapUiTinyMarginEnd" />
+      <Link
+        href="{view>/trainingUrl}"
+        text="{i18n>TRAINING_LINK_TEXT}"
+        target="_blank"
+        visible="{= !!${view>/trainingUrl} }" />
+      <Text text="{view>/trainingMessage}" visible="{= !!${view>/trainingMessage} }" />
+    </HBox>
+    <ScrollContainer
+      height="18rem"
+      width="100%"
+      vertical="true"
+      horizontal="false"
+      focusable="true"
+      class="sapUiTinyMarginTop">
+      <List
+        items="{view>/items}"
+        noDataText="{i18n>NO_ITEMS}"
+        showSeparators="Inner"
+        width="100%">
+        <CustomListItem>
+          <HBox justifyContent="SpaceBetween" alignItems="Center" wrap="Wrap">
+            <VBox class="sapUiTinyMarginBottom">
+              <Title level="H6" text="{view>title}" />
+              <Text text="{view>subtitle}" visible="{= !!${view>subtitle} }" />
+            </VBox>
+            <ObjectStatus text="{view>infoText}" state="{view>infoState}" />
+          </HBox>
+        </CustomListItem>
+      </List>
+    </ScrollContainer>
+  </VBox>
+</mvc:View>

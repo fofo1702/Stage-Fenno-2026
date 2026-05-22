@@ -1,0 +1,61 @@
+<mvc:View
+    controllerName="ku-card.controller.Main"
+    displayBlock="true"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:mvc="sap.ui.core.mvc">
+    <VBox fitContainer="true" class="sapUiSmallMargin">
+        <Toolbar design="Transparent">
+            <Label text="{i18n>FILTER_YEAR_LABEL}" labelFor="yearSelect"/>
+            <ToolbarSpacer/>
+            <Select
+                id="yearSelect"
+                width="12rem"
+                selectedKey="{view>/selectedYear}"
+                change=".onYearChange"
+                items="{view>/years}">
+                <core:Item key="{view>key}" text="{view>title}"/>
+            </Select>
+        </Toolbar>
+        <Table
+            autoPopinMode="true"
+            busy="{view>/busy}"
+            growing="true"
+            growingScrollToLoad="true"
+            items="{view>/results}"
+            noDataText="{i18n>NO_RESULTS}">
+            <columns>
+                <Column importance="High" width="18rem">
+                    <Text text="{i18n>COL_SUBJECT}"/>
+                </Column>
+                <Column hAlign="Center" importance="High" width="8rem">
+                    <Text text="{i18n>COL_RESULT}"/>
+                </Column>
+                <Column hAlign="Center" importance="Medium" width="8rem">
+                    <Text text="{i18n>COL_DATE}"/>
+                </Column>
+                <Column hAlign="Center" importance="Low" width="5rem">
+                    <Text text="{i18n>COL_SP}"/>
+                </Column>
+                <Column hAlign="Center" importance="Low" width="6rem">
+                    <Text text="{i18n>COL_ATTEMPT}"/>
+                </Column>
+                <Column hAlign="Center" importance="Low" width="8rem">
+                    <Text text="{i18n>COL_RETRIEVED}"/>
+                </Column>
+            </columns>
+            <items>
+                <ColumnListItem vAlign="Middle">
+                    <cells>
+                        <ObjectIdentifier title="{view>subject}"/>
+                        <ObjectStatus state="{view>resultState}" text="{view>result}"/>
+                        <Text text="{view>date}"/>
+                        <Text text="{view>sp}"/>
+                        <Text text="{view>attempt}"/>
+                        <Text text="{view>retrieved}"/>
+                    </cells>
+                </ColumnListItem>
+            </items>
+        </Table>
+    </VBox>
+</mvc:View>

@@ -1,0 +1,59 @@
+{
+	"sap.package": {
+		"id": "ns.training_tracker",
+		"packageVersion": {
+			"version": "1.3.9",
+			"upgradeNotification": "all"
+		},
+		"i18n": "i18n/i18n.properties",
+		"icon": "sap-icon://accept",
+		"title": "{{PACKAGE_TITLE}}",
+		"subTitle": "{{PACKAGE_SUBTITLE}}",
+		"shortTitle": "{{PACKAGE_SHORTTITLE}}",
+		"info": "{{PACKAGE_INFO}}",
+		"description": "{{PACKAGE_DESCRIPTION}}",
+		"tags": {
+			"keywords": [
+				"{{PACKAGE_KEYWORD1}}",
+				"{{PACKAGE_KEYWORD2}}"
+			]
+        },
+        "vendor": {
+            "id": "",
+            "name": "",
+            "url": ""
+        },
+		"products": "",
+		"categories": "",
+		"scope": "external",
+		"license": {
+			"text": "",
+			"url": ""
+		},
+		"homepage": {
+			"text": "",
+			"url": ""
+		},
+		"support": {
+			"url": ""
+		},
+		"contents": [
+			"__BUILD__"
+		],
+		"documentation": {
+			"url": ""
+		},
+		"consumption": [],
+		"dependencies": {
+			"products": [],
+			"services": []
+		},
+		"destinations": [
+			{
+				"name": "just_a_clone",
+				"label": "just_a_clone service",
+				"defaultUrl": "https://flexso-consumer-devtrt-dev.cfapps.eu10.hana.ondemand.com/training-reports"
+			}
+		]
+	}
+}

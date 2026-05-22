@@ -1,0 +1,116 @@
+[
+  {
+    "category": "PO nr",
+    "percentage": 0.9411764705882353,
+    "missingFiles": [
+      "Order bevestiging 26-02818.pdf",
+      "Order bevestiging 26-02855.pdf",
+      "Order bevestiging 26-02889.pdf",
+      "Van Hoeckel leveringsinformatie.pdf"
+    ]
+  },
+  {
+    "category": "Supplier Order Nr",
+    "percentage": 0.9558823529411765,
+    "missingFiles": [
+      "Van Hoeckel leveringsinformatie.pdf",
+      "Van Hoeckel order ontvangstbevestiging.pdf",
+      "Van Hoeckel orderinformatie.pdf"
+    ]
+  },
+  {
+    "category": "Order Date",
+    "percentage": 1,
+    "missingFiles": []
+  },
+  {
+    "category": "Supplier Name",
+    "percentage": 1,
+    "missingFiles": []
+  },
+  {
+    "category": "Customer name",
+    "percentage": 1,
+    "missingFiles": []
+  },
+  {
+    "category": "Currency",
+    "percentage": 0.9117647058823529,
+    "missingFiles": [
+      "Betreft_ Overzicht van nog te leveren Vygon producten.pdf",
+      "Uw orderinformatie (uw referentie_ 1504026606, Brocacef Ordernr_ TPV72539).pdf",
+      "Uw orderinformatie (uw referentie_ 2505040801, Brocacef Ordernr_ TPV72495).pdf",
+      "Van Hoeckel leveringsinformatie.pdf",
+      "Van Hoeckel order ontvangstbevestiging.pdf",
+      "Van Hoeckel orderinformatie.pdf"
+    ]
+  },
+  {
+    "category": "Article Number",
+    "percentage": 1,
+    "missingFiles": []
+  },
+  {
+    "category": "Description",
+    "percentage": 0.9852941176470589,
+    "missingFiles": [
+      "BE356233 Order Hospital Logistics  1501037350.pdf"
+    ]
+  },
+  {
+    "category": "Quantity",
+    "percentage": 1,
+    "missingFiles": []
+  },
+  {
+    "category": "UoM",
+    "percentage": 0.8823529411764706,
+    "missingFiles": [
+      "BD Order Acknowledgement for your purchase order with reference 3504015923.pdf",
+      "BD Order Acknowledgement for your purchase order with reference 3507009726.pdf",
+      "BE356233 Order Hospital Logistics  1501037350.pdf",
+      "Betreft_ Overzicht van nog te leveren Vygon producten.pdf",
+      "Lyreco orderbevestiging 167912161-16022026-0006.pdf",
+      "Lyreco orderbevestiging 167913009-16022026-0006.pdf",
+      "Lyreco orderbevestiging 167924591-16022026-0006.pdf",
+      "Van Hoeckel orderinformatie.pdf"
+    ]
+  },
+  {
+    "category": "Unit Price",
+    "percentage": 0.8529411764705882,
+    "missingFiles": [
+      "2501209992 ESSITY Orderbevestiging.pdf",
+      "2508010179 ESSITY Orderbevestiging.pdf",
+      "Betreft_ Overzicht van nog te leveren Vygon producten.pdf",
+      "Re_ [EXTERNAL EMAIL] Order Hospital Logistics  1507018691.pdf",
+      "Re_ [EXTERNAL EMAIL] Order Hospital Logistics  3505026679.pdf",
+      "Uw orderinformatie (uw referentie_ 1504026606, Brocacef Ordernr_ TPV72539).pdf",
+      "Uw orderinformatie (uw referentie_ 2505040801, Brocacef Ordernr_ TPV72495).pdf",
+      "Van Hoeckel leveringsinformatie.pdf",
+      "Van Hoeckel order ontvangstbevestiging.pdf",
+      "Van Hoeckel orderinformatie.pdf"
+    ]
+  },
+  {
+    "category": "Delivery Date",
+    "percentage": 0.7794117647058824,
+    "missingFiles": [
+      "2505040799 ESSITY Order Ontvangstbevestiging.pdf",
+      "2507017044 ESSITY Order Ontvangstbevestiging.pdf",
+      "2508010179 ESSITY Orderbevestiging.pdf",
+      "3505026639 ESSITY Orderbevestiging.pdf",
+      "6507004827 ESSITY Order Ontvangstbevestiging.pdf",
+      "6507004831 ESSITY Order Ontvangstbevestiging.pdf",
+      "6507004833 ESSITY Order Ontvangstbevestiging.pdf",
+      "Lyreco orderbevestiging 167912161-16022026-0006.pdf",
+      "Lyreco orderbevestiging 167913009-16022026-0006.pdf",
+      "Lyreco orderbevestiging 167924591-16022026-0006.pdf",
+      "Order bevestiging 26-02855.pdf",
+      "Re_ [EXTERNAL EMAIL] Order Hospital Logistics  1507018691.pdf",
+      "Re_ [EXTERNAL EMAIL] Order Hospital Logistics  3504015924.pdf",
+      "Re_ [EXTERNAL EMAIL] Order Hospital Logistics  3505026679.pdf",
+      "Uw orderinformatie (uw referentie_ 1504026606, Brocacef Ordernr_ TPV72539).pdf"
+    ]
+  }
+]

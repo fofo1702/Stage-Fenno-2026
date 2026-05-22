@@ -1,0 +1,13 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+		  xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml"
+		  width="100%"
+		  displayBlock="true"
+		  controllerName="proximus.main">
+
+	<VBox id="cardWrapper" class="cardWrapper" width="100%">
+		<VBox class="cardTextOverlay">
+			<Text text="{card>/welcomeText}" class="cardWelcomeTitle"/>
+			<Text text="{card>/welcomeSubtitle}" class="cardWelcomeSubtitle"/>
+		</VBox>
+	</VBox>
+</mvc:View>

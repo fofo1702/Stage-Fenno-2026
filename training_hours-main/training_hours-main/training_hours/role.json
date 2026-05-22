@@ -1,0 +1,21 @@
+{
+    "_version": "3.2.0",
+    "identification": {
+        "id": "training.role",
+        "title": "Training Role",
+        "entityType": "role"
+    },
+    "payload":{
+        "apps": [
+            {
+                "id": "trainingCard.app"
+            },
+            {
+                "id": "trainingTableCard.app"
+            },
+            {
+                "id": "trainingHoursGlanceCard.app"
+            }
+        ]
+    }
+}

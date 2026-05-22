@@ -1,0 +1,52 @@
+{
+	"_version": "1.84.0",
+	"sap.app": {
+		"id": "proximus",
+		"type": "card",
+		"title": "Proximus Card",
+		"applicationVersion": {
+            "version": "1.0.0"
+        },
+        "imagePath": "images/myHR.png"
+	},
+	"sap.ui": {
+		"technology": "UI5",
+		"icons": {
+			"icon": "sap-icon://technical-object"
+		}
+	},
+	"sap.ui5": {
+		"rootView": {
+			"viewName": "proximus.view",
+			"type": "XML",
+			"async": true,
+			"id": "app"
+		},
+		"resources": {
+			"css": [
+				{ "uri": "css/card-tweaks.css" }
+			]
+		},
+		"dependencies": {
+			"minUI5Version": "1.38",
+			"libs": {
+				"sap.m": {},
+				"sap.ui.core": {}
+			}
+		}
+	},
+	"sap.card": {
+		"type": "Component",
+		"configuration": {
+			"editor": "./dt/Configuration",
+			"parameters": {
+				"welcomeText": {
+					"value": "Welcomeck 👋"
+				},
+				"welcomeSubtitle": {
+					"value": "Check your HR services below"
+				}
+			}
+		}
+	}
+}

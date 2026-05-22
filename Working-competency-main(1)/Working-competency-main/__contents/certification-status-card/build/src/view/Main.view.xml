@@ -1,0 +1,92 @@
+<mvc:View
+  controllerName="competencycards.certificationStatus.controller.Main"
+  displayBlock="true"
+  xmlns="sap.m"
+  xmlns:core="sap.ui.core"
+  xmlns:mvc="sap.ui.core.mvc">
+  <VBox busy="{view>/busy}" class="sapUiSmallMargin">
+    <MessageStrip
+      text="{view>/error}"
+      type="Error"
+      visible="{= !!${view>/error} }" />
+    <Label text="{i18n>GROUP_LABEL}" labelFor="groupSelect" />
+    <Select
+      id="groupSelect"
+      change=".onGroupChange"
+      items="{view>/groups}"
+      selectedKey="{view>/selectedGroupKey}">
+      <core:Item key="{view>key}" text="{= ${view>description} || ${view>key} }" />
+    </Select>
+    <VBox
+      visible="{= !!${view>/selectedGroup} }"
+      class="sapUiMediumMarginTop">
+      <Title level="H5" text="{view>/selectedGroup/description}" />
+      <HBox wrap="Wrap" class="sapUiTinyMarginTop">
+        <Label text="{i18n>GROUP_KEY}" width="8rem" />
+        <Text text="{view>/selectedGroup/key}" wrapping="true" />
+      </HBox>
+      <HBox wrap="Wrap" class="sapUiTinyMarginTop sapUiTinyMarginBottom">
+        <VBox class="sapUiSmallMarginEnd sapUiTinyMarginBottom">
+          <Label text="{i18n>TOTAL_CERTIFICATIONS}" />
+          <ObjectNumber number="{view>/totalCertifications}" emphasized="false" />
+        </VBox>
+        <VBox class="sapUiTinyMarginBottom">
+          <Label text="{i18n>USERS_WITH_CERTIFICATIONS}" />
+          <ObjectNumber number="{view>/memberCount}" emphasized="false" />
+        </VBox>
+      </HBox>
+      <Title level="H6" text="{i18n>STATUS_BREAKDOWN}" class="sapUiMediumMarginTop sapUiTinyMarginBottom" />
+      <HBox alignItems="Center" justifyContent="Center" renderType="Bare" wrap="Wrap">
+        <core:HTML id="chartHtml" content="{view>/chartMarkup}" sanitizeContent="false" />
+        <List
+          items="{view>/legendItems}"
+          itemPress=".onLegendPress"
+          showSeparators="None"
+          class="sapUiMediumMarginBegin sapUiTinyMarginTop"
+          width="14rem">
+          <CustomListItem type="Active">
+            <HBox
+              justifyContent="SpaceBetween"
+              alignItems="Center"
+              class="sapUiTinyMarginTopBottom sapUiTinyMarginBegin sapUiTinyMarginEnd">
+              <HBox alignItems="Center" class="sapUiTinyMarginEnd">
+                <core:Icon
+                  src="sap-icon://circle-task-2"
+                  color="{view>color}"
+                  class="sapUiTinyMarginEnd" />
+                <Text text="{view>label}" />
+              </HBox>
+              <ObjectNumber number="{view>count}" emphasized="false" />
+            </HBox>
+          </CustomListItem>
+        </List>
+      </HBox>
+      <Title level="H6" text="{view>/displayListTitle}" class="sapUiMediumMarginTop sapUiTinyMarginBottom" />
+      <ScrollContainer
+        height="24rem"
+        width="100%"
+        vertical="true"
+        horizontal="false"
+        focusable="true">
+        <List
+          items="{view>/displayedCertifications}"
+          noDataText="{i18n>NO_CERTIFICATIONS}"
+          showSeparators="Inner"
+          width="100%">
+          <CustomListItem>
+            <VBox class="sapUiTinyMarginTop sapUiTinyMarginBottom">
+              <HBox justifyContent="SpaceBetween" wrap="Wrap">
+                <Title level="H6" text="{view>title}" />
+                <ObjectStatus
+                  text="{view>statusLabel}"
+                  state="{view>statusState}" />
+              </HBox>
+              <Text text="{view>description}" wrapping="true" />
+              <Text text="{view>detailsText}" wrapping="true" class="sapUiTinyMarginTop" />
+            </VBox>
+          </CustomListItem>
+        </List>
+      </ScrollContainer>
+    </VBox>
+  </VBox>
+</mvc:View>

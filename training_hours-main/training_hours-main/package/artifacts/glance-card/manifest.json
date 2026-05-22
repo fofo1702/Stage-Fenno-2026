@@ -1,0 +1,13 @@
+{
+	"_version": "1.27.0",
+	"_generator": "cpkg-project-template",
+	"sap.artifact": {
+		"id": "trainingHoursGlanceCard",
+		"type": "card",
+		"title": "{{CARD_TITLE}}",
+		"i18n": "i18n/i18n.properties",
+		"artifactVersion": {
+			"version": "1.0.0"
+		}
+	}
+}

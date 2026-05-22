@@ -1,0 +1,16 @@
+{
+  "name": "graphcard-order-analytics",
+  "version": "1.0.0",
+  "description": "SAP UI Integration Card – Order Analytics Column Chart",
+  "scripts": {
+    "start": "npx serve . -p 4000 --cors & sleep 1 && npx open-cli http://localhost:4000/preview.html",
+    "serve": "npx serve . -p 4000 --cors",
+    "convert": "node convert.js",
+    "build": "mbt build",
+    "deploy": "npm run build && cf deploy mta_archives/graphcard-order-analytics_1.0.0.mtar"
+  },
+  "devDependencies": {
+    "serve": "^14.0.0",
+    "xlsx": "^0.18.5"
+  }
+}

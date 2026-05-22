@@ -1,0 +1,57 @@
+/* Remove card chrome */
+.sapUiIntegrationCard.sapFCard,
+.sapFCard {
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 12px !important;
+    overflow: hidden !important;
+    background: transparent !important;
+}
+
+.sapFCardContent {
+    padding: 0 !important;
+    margin: 0 !important;
+    background: transparent !important;
+}
+
+/* Wrapper IS the image — text lives naturally inside it */
+.cardWrapper {
+    width: 100%;
+    aspect-ratio: 3 / 1;
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: flex-start !important;
+}
+
+/* Text overlay sits inside the image area */
+.cardTextOverlay {
+    text-align: left;
+    padding: 1.5rem 2rem;
+    padding-left: 300px; /* <-- adjust this to move text left/right */
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+}
+
+.cardWelcomeTitle {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ffffff;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.4);
+}
+
+.cardWelcomeSubtitle {
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.85);
+    margin-top: 0.25rem;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+}
+

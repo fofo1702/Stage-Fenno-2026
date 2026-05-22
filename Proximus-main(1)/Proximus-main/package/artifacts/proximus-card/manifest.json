@@ -1,0 +1,13 @@
+{
+	"_version": "1.27.0",
+	"_generator": "cpkg-project-template",
+	"sap.artifact": {
+		"id": "proximus",
+		"type": "card",
+		"title": "Proximus Card",
+		"imagePath": "images/myHR.png",
+		"artifactVersion": {
+			"version": "1.0.0"
+		}
+	}
+}

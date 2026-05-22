@@ -1,0 +1,575 @@
+{
+	"sap.package": {
+		"id": "ns.training_tracker",
+		"packageVersion": {
+			"version": "1.3.9",
+			"upgradeNotification": "all"
+		},
+		"i18n": "i18n/i18n.properties",
+		"icon": "sap-icon://accept",
+		"title": "{{PACKAGE_TITLE}}",
+		"subTitle": "{{PACKAGE_SUBTITLE}}",
+		"shortTitle": "{{PACKAGE_SHORTTITLE}}",
+		"info": "{{PACKAGE_INFO}}",
+		"description": "{{PACKAGE_DESCRIPTION}}",
+		"tags": {
+			"keywords": [
+				"{{PACKAGE_KEYWORD1}}",
+				"{{PACKAGE_KEYWORD2}}"
+			]
+		},
+		"vendor": {
+			"id": "",
+			"name": "",
+			"url": ""
+		},
+		"products": "",
+		"categories": "",
+		"scope": "external",
+		"license": {
+			"text": "",
+			"url": ""
+		},
+		"homepage": {
+			"text": "",
+			"url": ""
+		},
+		"support": {
+			"url": ""
+		},
+		"contents": [
+			{
+				"manifest": {
+					"_version": "1.27.0",
+					"_generator": "cpkg-project-template",
+					"sap.artifact": {
+						"id": "trainingCard",
+						"type": "card",
+						"title": "{{CARD_TITLE}}",
+						"subTitle": "{{CARD_SUBTITLE}}",
+						"description": "{{CARD_DESCRIPTION}}",
+						"i18n": "i18n/i18n.properties",
+						"artifactVersion": {
+							"version": "1.0.0"
+						}
+					}
+				},
+				"baseURL": "artifacts/training-card"
+			},
+			{
+				"manifest": {
+					"_version": "1.27.0",
+					"_generator": "cpkg-project-template",
+					"sap.artifact": {
+						"id": "trainingTableCard",
+						"type": "card",
+						"title": "Training Hours Summary",
+						"subTitle": "Hours by year",
+						"artifactVersion": {
+							"version": "1.0.0"
+						}
+					}
+				},
+				"baseURL": "artifacts/table-card"
+			},
+			{
+				"manifest": {
+					"_version": "1.27.0",
+					"_generator": "cpkg-project-template",
+					"sap.artifact": {
+						"id": "trainingHoursGlanceCard",
+						"type": "card",
+						"title": "{{CARD_TITLE}}",
+						"i18n": "i18n/i18n.properties",
+						"artifactVersion": {
+							"version": "1.0.0"
+						}
+					}
+				},
+				"baseURL": "artifacts/glance-card"
+			}
+		],
+		"documentation": {
+			"url": ""
+		},
+		"consumption": [],
+		"dependencies": {
+			"products": [],
+			"services": []
+		},
+		"destinations": [
+			{
+				"name": "just_a_clone",
+				"label": "just_a_clone service",
+				"defaultUrl": "https://flexso-consumer-devtrt-dev.cfapps.eu10.hana.ondemand.com/training-reports"
+			}
+		],
+		"cdmEntities": [
+			{
+				"_version": "3.2.0",
+				"identification": {
+					"id": "training.role",
+					"title": "Training Role",
+					"entityType": "role"
+				},
+				"payload": {
+					"apps": [
+						{
+							"id": "trainingCard.app"
+						},
+						{
+							"id": "trainingTableCard.app"
+						},
+						{
+							"id": "trainingHoursGlanceCard.app"
+						}
+					]
+				},
+				"texts": [
+					{
+						"locale": "",
+						"textDictionary": {}
+					},
+					{
+						"locale": "en",
+						"textDictionary": {}
+					}
+				]
+			},
+			{
+				"_version": "3.2.0",
+				"identification": {
+					"id": "trainingCard.app",
+					"title": "{{CARD_TITLE}}",
+					"entityType": "businessapp",
+					"description": "{{description}}"
+				},
+				"payload": {
+					"visualizations": {
+						"trainingCard.viz": {
+							"vizType": "sap.card",
+							"vizConfig": {
+								"sap.app": {
+									"id": "trainingCard",
+									"type": "card",
+									"title": "{{CARD_TITLE}}",
+									"subTitle": "{{CARD_SUBTITLE}}",
+									"description": "{{CARD_DESCRIPTION}}",
+									"applicationVersion": {
+										"version": "1.0.0"
+									},
+									"i18n": "i18n/i18n.properties"
+								},
+								"sap.ui": {
+									"technology": "UI5"
+								},
+								"sap.workzone": {
+									"defaultSize": {
+										"rows": 4,
+										"columns": 2
+									}
+								},
+								"sap.card": {
+									"type": "Analytical",
+									"configuration": {
+										"destinations": {
+											"trainingApi": {
+												"name": "just_a_clone",
+												"defaultUrl": "https://flexso-consumer-devtrt-dev.cfapps.eu10.hana.ondemand.com/training-reports"
+											}
+										}
+									},
+									"header": {
+										"title": "{{CARD_TITLE}}",
+										"subTitle": "{{CARD_SUBTITLE}}",
+										"icon": {
+											"src": "sap-icon://learning-assistant"
+										}
+									},
+									"content": {
+										"chartType": "column",
+										"data": {
+											"request": {
+												"url": "{{destinations.trainingApi}}/training-reports",
+												"withCredentials": true
+											},
+											"path": "/"
+										},
+										"chartProperties": {
+											"legend": {
+												"visible": true,
+												"position": "bottom"
+											},
+											"plotArea": {
+												"colorPalette": [
+													"#0070F2",
+													"#91C8F6"
+												],
+												"dataLabel": {
+													"visible": false
+												}
+											},
+											"categoryAxis": {
+												"title": {
+													"visible": false
+												}
+											},
+											"valueAxis": {
+												"title": {
+													"visible": true,
+													"text": "{{HOURS_LABEL}}"
+												}
+											}
+										},
+										"measures": [
+											{
+												"name": "Spent Hours",
+												"value": "{spentHours}"
+											},
+											{
+												"name": "Planned Hours",
+												"value": "{plannedHours}"
+											}
+										],
+										"dimensions": [
+											{
+												"name": "Year",
+												"value": "{year}"
+											}
+										],
+										"feeds": [
+											{
+												"type": "Dimension",
+												"uid": "categoryAxis",
+												"values": [
+													"Year"
+												]
+											},
+											{
+												"type": "Measure",
+												"uid": "valueAxis",
+												"values": [
+													"Spent Hours",
+													"Planned Hours"
+												]
+											}
+										]
+									}
+								}
+							},
+							"vizResources": {
+								"artifactId": "trainingCard"
+							}
+						}
+					}
+				},
+				"texts": [
+					{
+						"locale": "",
+						"textDictionary": {
+							"CARD_TITLE": "Training Hours per Year",
+							"CARD_SUBTITLE": "Overview of training hours and entitlements",
+							"CARD_DESCRIPTION": "Training hours overview by year",
+							"HOURS_LABEL": "Hours"
+						}
+					},
+					{
+						"locale": "en",
+						"textDictionary": {
+							"CARD_TITLE": "Training Hours per Year",
+							"CARD_SUBTITLE": "Overview of training hours and entitlements",
+							"CARD_DESCRIPTION": "Training hours overview by year",
+							"HOURS_LABEL": "Hours"
+						}
+					}
+				]
+			},
+			{
+				"_version": "3.2.0",
+				"identification": {
+					"id": "trainingTableCard.app",
+					"title": "Training Hours Summary",
+					"entityType": "businessapp",
+					"description": "{{description}}"
+				},
+				"payload": {
+					"visualizations": {
+						"trainingTableCard.viz": {
+							"vizType": "sap.card",
+							"vizConfig": {
+								"sap.app": {
+									"id": "trainingTableCard",
+									"type": "card",
+									"title": "Training Hours Summary",
+									"subTitle": "Hours by year",
+									"applicationVersion": {
+										"version": "1.0.0"
+									}
+								},
+								"sap.ui": {
+									"technology": "UI5"
+								},
+								"sap.card": {
+									"type": "Table",
+									"header": {
+										"title": "Training Hours Summary",
+										"subTitle": "Hours by year",
+										"icon": {
+											"src": "sap-icon://table-chart"
+										}
+									},
+									"content": {
+										"data": {
+											"json": {
+												"rows": [
+													{
+														"year": "2024",
+														"spentHours": "103.8",
+														"plannedHours": "15",
+														"entitledHours": "22.8",
+														"spentDays": "13.66",
+														"highlight": "None"
+													},
+													{
+														"year": "2025",
+														"spentHours": "275.62",
+														"plannedHours": "242.5",
+														"entitledHours": "22.8",
+														"spentDays": "36.27",
+														"highlight": "None"
+													},
+													{
+														"year": "2026",
+														"spentHours": "49.5",
+														"plannedHours": "24",
+														"entitledHours": "22.8",
+														"spentDays": "6.51",
+														"highlight": "Information"
+													},
+													{
+														"year": "2027",
+														"spentHours": "0",
+														"plannedHours": "0",
+														"entitledHours": "22.8",
+														"spentDays": "0",
+														"highlight": "None"
+													},
+													{
+														"year": "2028",
+														"spentHours": "0",
+														"plannedHours": "0",
+														"entitledHours": "22.8",
+														"spentDays": "0",
+														"highlight": "None"
+													}
+												]
+											},
+											"path": "/rows"
+										},
+										"row": {
+											"highlight": "{highlight}",
+											"columns": [
+												{
+													"title": "Year",
+													"value": "{year}",
+													"width": "4rem"
+												},
+												{
+													"title": "Spent (h)",
+													"value": "{spentHours}",
+													"hAlign": "End"
+												},
+												{
+													"title": "Planned (h)",
+													"value": "{plannedHours}",
+													"hAlign": "End"
+												},
+												{
+													"title": "Entitled (h)",
+													"value": "{entitledHours}",
+													"hAlign": "End"
+												},
+												{
+													"title": "Spent (days)",
+													"value": "{spentDays}",
+													"hAlign": "End"
+												}
+											]
+										}
+									}
+								}
+							},
+							"vizResources": {
+								"artifactId": "trainingTableCard"
+							}
+						}
+					}
+				},
+				"texts": [
+					{
+						"locale": "",
+						"textDictionary": {
+							"description": "Business App Description"
+						}
+					}
+				]
+			},
+			{
+				"_version": "3.2.0",
+				"identification": {
+					"id": "trainingHoursGlanceCard.app",
+					"title": "{{CARD_TITLE}}",
+					"entityType": "businessapp",
+					"description": "{{description}}"
+				},
+				"payload": {
+					"visualizations": {
+						"trainingHoursGlanceCard.viz": {
+							"vizType": "sap.card",
+							"vizConfig": {
+								"sap.app": {
+									"id": "trainingHoursGlanceCard",
+									"type": "card",
+									"title": "{{CARD_TITLE}}",
+									"applicationVersion": {
+										"version": "1.0.0"
+									},
+									"i18n": "i18n/i18n.properties"
+								},
+								"sap.ui": {
+									"technology": "UI5"
+								},
+								"sap.card": {
+									"type": "Analytical",
+									"configuration": {
+										"destinations": {
+											"trainingApi": {
+												"name": "just_a_clone",
+												"defaultUrl": "https://flexso-consumer-devtrt-dev.cfapps.eu10.hana.ondemand.com/training-reports"
+											}
+										}
+									},
+									"header": {
+										"title": "{{CARD_TITLE}}",
+										"subTitle": "{{CARD_SUBTITLE}}",
+										"icon": {
+											"src": "sap-icon://learning-assistant"
+										},
+										"actions": [
+											{
+												"type": "Navigation",
+												"parameters": {
+													"url": "https://flexso-consumer-dev.launchpad.cfapps.eu10.hana.ondemand.com/site?siteId=c527b1f3-011c-44f0-9e42-0374d6614bdf#trt-display?sap-ui-app-id-hint=fcb76296-3bd5-4183-9ab9-17e259c977d9_com.flexso.trt",
+													"target": "_blank"
+												}
+											}
+										]
+									},
+									"content": {
+										"chartType": "StackedBar",
+										"popover": {
+											"active": true
+										},
+										"data": {
+											"request": {
+												"url": "{{destinations.trainingApi}}/training-reports",
+												"withCredentials": true
+											},
+											"path": "/"
+										},
+										"chartProperties": {
+											"title": {
+												"visible": false
+											},
+											"legendGroup": {
+												"position": "bottom",
+												"alignment": "topLeft"
+											},
+											"plotArea": {
+												"colorPalette": [
+													"#0064D9",
+													"#91C8F6",
+													"#E76500"
+												],
+												"dataLabel": {
+													"visible": false
+												}
+											},
+											"categoryAxis": {
+												"title": {
+													"visible": false
+												}
+											},
+											"valueAxis": {
+												"title": {
+													"visible": false
+												}
+											}
+										},
+										"measures": [
+											{
+												"name": "Spent Hours",
+												"value": "{spentHours}"
+											},
+											{
+												"name": "Planned Hours",
+												"value": "{plannedHours}"
+											},
+											{
+												"name": "Entitled Hours",
+												"value": "{entitledHours}"
+											}
+										],
+										"dimensions": [
+											{
+												"name": "Year",
+												"value": "{year}"
+											}
+										],
+										"feeds": [
+											{
+												"type": "Dimension",
+												"uid": "categoryAxis",
+												"values": [
+													"Year"
+												]
+											},
+											{
+												"type": "Measure",
+												"uid": "valueAxis",
+												"values": [
+													"Spent Hours",
+													"Planned Hours",
+													"Entitled Hours"
+												]
+											}
+										]
+									}
+								}
+							},
+							"vizResources": {
+								"artifactId": "trainingHoursGlanceCard"
+							}
+						}
+					}
+				},
+				"texts": [
+					{
+						"locale": "",
+						"textDictionary": {
+							"CARD_TITLE": "Training Hours At a Glance",
+							"CARD_SUBTITLE": "Spent · Planned · Entitled per year"
+						}
+					},
+					{
+						"locale": "en",
+						"textDictionary": {
+							"CARD_TITLE": "Training Hours At a Glance",
+							"CARD_SUBTITLE": "Spent · Planned · Entitled per year"
+						}
+					}
+				]
+			}
+		]
+	}
+}

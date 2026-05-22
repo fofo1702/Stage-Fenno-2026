@@ -1,0 +1,13 @@
+{
+	"_version": "1.27.0",
+	"_generator": "cpkg-project-template",
+	"sap.artifact": {
+		"id": "trainingTableCard",
+		"type": "card",
+		"title": "Training Hours Summary",
+		"subTitle": "Hours by year",
+		"artifactVersion": {
+			"version": "1.0.0"
+		}
+	}
+}

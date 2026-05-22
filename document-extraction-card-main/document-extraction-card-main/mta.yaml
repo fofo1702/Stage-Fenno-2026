@@ -1,0 +1,46 @@
+_schema-version: "3.1"
+ID: graphcard-order-analytics
+version: 1.0.0
+description: Order Analytics Column Chart - SAP UI Integration Card
+
+modules:
+  - name: graphcard-order-analytics-deployer
+    type: com.sap.application.content
+    path: .
+    requires:
+      - name: graphcard-html5-repo-host
+        parameters:
+          content-target: true
+    build-parameters:
+      build-result: resources
+      requires:
+        - name: graphcard-order-analytics-card
+          artifacts:
+            - data.zip
+          target-path: resources/
+
+  - name: graphcard-order-analytics-card
+    type: html5
+    path: .
+    build-parameters:
+      builder: zip
+      ignore:
+        - .cfignore
+        - mta.yaml
+        - package.json
+        - package-lock.json
+        - convert.js
+        - preview.html
+        - rawdata.json
+        - "*.xlsx"
+        - "*.pdf"
+        - "Makefile*"
+        - node_modules/
+        - resources/
+        - mta_archives/
+
+resources:
+  - name: graphcard-html5-repo-host
+    type: org.cloudfoundry.existing-service
+    parameters:
+      service-name: project1-html5-service

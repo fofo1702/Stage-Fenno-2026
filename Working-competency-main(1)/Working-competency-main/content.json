@@ -1,0 +1,132 @@
+{
+    "Competency-role":{
+        "type": "role",
+        "src": {
+            "from": "./roles",
+            "content": "role.json"
+        }
+    },
+    "assessments-card":{
+        "type": "card",
+        "src": {
+            "from": "./assessments_card",
+            "manifest": "manifest.json",
+            "files": ["CardExtension.js"]
+        }
+    },
+    
+    "assessment-component-card":{
+        "type": "card",
+        "src": {
+            "from": "./assessment_component_card",
+            "manifest": "manifest.json",
+            "files": ["Component.js", "controller/Main.controller.js", "view/Main.view.xml", "i18n/i18n.properties"]
+        }
+    },
+    "role-filter-card":{
+        "type": "card",
+        "src": {
+            "from": "./role_filter_card",
+            "manifest": "manifest.json",
+            "files": ["Component.js", "controller/Main.controller.js", "view/Main.view.xml", "i18n/i18n.properties"]
+        }
+    },
+    "group-component-card":{
+        "type": "card",
+        "src": {
+            "from": "./group_component_card",
+            "manifest": "manifest.json",
+            "files": ["Component.js", "controller/Main.controller.js", "view/Main.view.xml", "i18n/i18n.properties"]
+        }
+    },
+    "competency-component-card":{
+        "type": "card",
+        "src": {
+            "from": "./competency_component_card",
+            "manifest": "manifest.json",
+            "files": ["Component.js", "controller/Main.controller.js", "view/Main.view.xml", "i18n/i18n.properties"]
+        }
+    },
+    "certification-assessments-card":{
+        "type": "card",
+        "src": {
+            "from": "./certification_assessments_card",
+            "manifest": "manifest.json",
+            "files": ["CardExtension.js"]
+        }
+    },
+    "certification-status-card":{
+        "type": "card",
+        "src": {
+            "from": "./certification_status_card",
+            "manifest": "manifest.json",
+            "files": ["Component.js", "controller/Main.controller.js", "view/Main.view.xml", "i18n/i18n.properties"]
+        }
+    },
+    "aggregated-score-card":{
+        "type": "card",
+        "src": {
+            "from": "./aggregated_score_card",
+            "manifest": "manifest.json",
+            "files": ["Component.js", "controller/Main.controller.js", "view/Main.view.xml", "i18n/i18n.properties"]
+        }
+    },
+    "certifications-list-card":{
+        "type": "card",
+        "src": {
+            "from": "./certifications_list_card",
+            "manifest": "manifest.json",
+            "files": ["CardExtension.js"]
+        }
+    },
+    "competencies-list-card":{
+        "type": "card",
+        "src": {
+            "from": "./competencies_list_card",
+            "manifest": "manifest.json",
+            "files": ["CardExtension.js"]
+        }
+    },
+
+    "overdue-certificates-v2-card":{
+        "type": "card",
+        "src": {
+            "from": "./overdue_certificates_card",
+            "manifest": "manifest.json",
+            "files": ["Component.js", "view/Main.view.xml", "i18n/i18n.properties"]
+        }
+    },
+    "overdue-certificates-v3-card":{
+        "type": "card",
+        "src": {
+            "from": "./overdue_certificates_v3_card",
+            "manifest": "manifest.json",
+            "files": ["Component.js", "controller/Main.controller.js", "view/Main.view.xml", "i18n/i18n.properties"]
+        }
+    },
+    "profile-summary-card":{
+        "type": "card",
+        "src": {
+            "from": "./profile_summary_card",
+            "manifest": "manifest.json",
+            "files": ["Component.js", "controller/Main.controller.js", "view/Main.view.xml", "i18n/i18n.properties"]
+        }
+    },
+    "all-assessments-card":{
+        "type": "card",
+        "src": {
+            "from": "./all_assessments_card",
+            "manifest": "manifest.json",
+            "files": ["CardExtension.js"]
+        }
+    },
+    "auto-updated-overview-card":{
+        "type": "card",
+        "src": {
+            "from": "./auto_updated_overview_card",
+            "manifest": "manifest.json",
+            "files": ["Component.js", "controller/Main.controller.js", "view/Main.view.xml", "i18n/i18n.properties"]
+        }
+    }
+    
+}

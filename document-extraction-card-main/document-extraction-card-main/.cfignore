@@ -1,0 +1,9 @@
+node_modules/
+mta_archives/
+resources/
+package-lock.json
+convert.js
+preview.html
+rawdata.json
+*.xlsx
+*.pdf

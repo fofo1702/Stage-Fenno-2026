@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Order Analytics Card – Preview</title>
+  <script
+    src="https://ui5.sap.com/resources/sap-ui-integration.js"
+    id="sap-ui-bootstrap"
+    data-sap-ui-theme="sap_horizon"
+  ></script>
+  <style>
+    body {
+      font-family: "72", Arial, sans-serif;
+      background: #f5f6f7;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 2rem;
+      box-sizing: border-box;
+    }
+    h1 {
+      color: #0a6ed1;
+      margin-bottom: 1.5rem;
+      font-size: 1.2rem;
+    }
+    ui-integration-card {
+      width: 600px;
+      max-width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <h1>Document extractor with UI – Local Preview</h1>
+  <ui-integration-card
+    manifest="./manifest.json"
+    base-url="./"
+  ></ui-integration-card>
+</body>
+</html>
